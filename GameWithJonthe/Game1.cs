@@ -13,6 +13,10 @@ namespace GameWithJonthe
 
         Texture2D monsterTexture;
 
+        Player player;
+
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -22,8 +26,8 @@ namespace GameWithJonthe
         
         protected override void Initialize()
         {
+            player = new Player();
             
-
             base.Initialize();
         }
 
@@ -49,9 +53,16 @@ namespace GameWithJonthe
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            
+            KeyboardState pressedKeys = Keyboard.GetState();
 
-            
+            player.update(pressedKeys);
+
+
+
+
+
+
+
 
             base.Update(gameTime);
         }
@@ -61,6 +72,8 @@ namespace GameWithJonthe
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+
+            
             
 
             base.Draw(gameTime);

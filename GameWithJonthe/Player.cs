@@ -54,6 +54,32 @@ namespace GameWithJonthe
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
         }
 
+        public void update(KeyboardState pressedKeys)
+        {
+
+            if (pressedKeys.IsKeyDown(Keys.W))
+            {
+                while (speed.X < 3)
+                {
+                    position.X = position.X += speed.X;
+
+                }
+            }
+            
+
+            while (speed.Y < 3)
+            {
+                position.Y = position.Y += speed.Y;
+
+            }
+            
+            
+
+
+            
+                
+        }
+
         
 
         
