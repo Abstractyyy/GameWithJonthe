@@ -12,13 +12,14 @@ namespace GameWithJonthe
     {
         Vector2 position;
         Vector2 speed;
+        Vector2 agilityAccel;
 
         Rectangle sourceRectangle;
 
         Texture2D spriteBatch;
 
         int HP;
-        int Agility;
+        float Agility;
         int Mana;
 
 
@@ -56,7 +57,40 @@ namespace GameWithJonthe
 
         public void update(KeyboardState pressedKeys)
         {
+            // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility speed. agilityAccel är hur snabbt man kan springa till max hastigheten agility
+            if (pressedKeys.IsKeyDown(Keys.W))
+            {
+                while (speed.X < Agility)
+                {
+                    position.X = position.X += speed.X;
 
+                }
+            }
+
+            if (pressedKeys.IsKeyDown(Keys.W))
+            {
+                if (pressedKeys.IsKeyDown(Keys.A))
+                {
+                    while (speed.X < 3)
+                    {
+                        position.X = position.X += Agility.X;
+
+                    }
+                }
+                else if (pressedKeys.IsKeyDown(Keys.D))
+                {
+
+
+                }
+                else
+                {
+
+                }
+
+             }
+
+               
+            }
             if (pressedKeys.IsKeyDown(Keys.W))
             {
                 while (speed.X < 3)
@@ -65,13 +99,17 @@ namespace GameWithJonthe
 
                 }
             }
-            
-
-            while (speed.Y < 3)
+            if (pressedKeys.IsKeyDown(Keys.W))
             {
-                position.Y = position.Y += speed.Y;
+                while (speed.X < 3)
+                {
+                    position.X = position.X += speed.X;
 
+                }
             }
+
+
+            
             
             
 
