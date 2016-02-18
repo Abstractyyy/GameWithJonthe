@@ -34,7 +34,7 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
-            Content.Load<Texture2D>("");
+            Content.Load<Texture2D>("werewolf-monster");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -56,12 +56,6 @@ namespace GameWithJonthe
             KeyboardState pressedKeys = Keyboard.GetState();
 
             player.update(pressedKeys);
-
-
-
-
-
-
 
 
             base.Update(gameTime);
