@@ -10,11 +10,13 @@ namespace GameWithJonthe
 {
     class Monster
     {
-        Texture2D spriteBatch;
+        Texture2D spriteSheet;
         Rectangle sourceRectangle;
 
-        public Monster()
+        public Monster(Texture2D monsterTexture)
         {
+            spriteSheet = monsterTexture;
+
             sourceRectangle = new Rectangle(0, 120, 50, 60);
         }
 
