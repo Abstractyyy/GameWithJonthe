@@ -28,7 +28,7 @@ namespace GameWithJonthe
         {
             player = new Player();
 
-            monster = new Monster();
+            monster = new Monster(monsterTexture);
 
             base.Initialize();
         }
