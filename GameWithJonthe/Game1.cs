@@ -15,7 +15,7 @@ namespace GameWithJonthe
 
         Player player;
 
-
+        Monster monster;
 
         public Game1()
         {
@@ -27,7 +27,9 @@ namespace GameWithJonthe
         protected override void Initialize()
         {
             player = new Player();
+
             
+
             base.Initialize();
         }
 
