@@ -37,6 +37,7 @@ namespace GameWithJonthe
         protected override void LoadContent()
         {
             Content.Load<Texture2D>("Werewolf");
+            
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
