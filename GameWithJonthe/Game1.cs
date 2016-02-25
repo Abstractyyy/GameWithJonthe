@@ -28,7 +28,7 @@ namespace GameWithJonthe
         {
             player = new Player();
 
-            
+            monster = new Monster();
 
             base.Initialize();
         }
@@ -36,7 +36,7 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
-            Content.Load<Texture2D>("Werewolf");
+            monsterTexture = Content.Load<Texture2D>("Werewolf");
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
