@@ -62,60 +62,56 @@ namespace GameWithJonthe
             {
                 while (speed.X < Agility)
                 {
-                    position.X = position.X += speed.X;
+                    position.Y = position.Y += speed.Y;
+                    speed.Y += (Agility / 10);
 
                 }
+                position.Y = position.Y += speed.Y;
             }
 
-            if (pressedKeys.IsKeyDown(Keys.W))
+            if (pressedKeys.IsKeyDown(Keys.A))
             {
-                if (pressedKeys.IsKeyDown(Keys.A))
+                while (speed.X < Agility)
                 {
-                    while (speed.X < 3)
-                    {
-                        position.X = position.X += Agility.X;
-
-                    }
-                }
-                else if (pressedKeys.IsKeyDown(Keys.D))
-                {
-
+                    position.X = position.X -= speed.X;
+                    speed.X += (Agility / 10);
 
                 }
-                else
-                {
-
-                }
-
-             }
-
-               
-            }
-            if (pressedKeys.IsKeyDown(Keys.W))
-            {
-                while (speed.X < 3)
-                {
-                    position.X = position.X += speed.X;
-
-                }
-            }
-            if (pressedKeys.IsKeyDown(Keys.W))
-            {
-                while (speed.X < 3)
-                {
-                    position.X = position.X += speed.X;
-
-                }
-            }
-
-
-            
-            
-            
-
-
-            
+                position.X = position.X += speed.X;
                 
+            }
+
+            if (pressedKeys.IsKeyDown(Keys.S))
+            {
+                while (speed.X < Agility)
+                {
+                    position.Y -= speed.Y;
+                    speed.Y += (Agility / 10);
+
+                }
+                position.Y -= speed.Y;
+
+            }
+
+            if (pressedKeys.IsKeyDown(Keys.D))
+            {
+                while (speed.X < Agility)
+                {
+                    position.X = position.X += speed.X;
+                    speed.X += (Agility / 10);
+
+                }
+                position.X = position.X += speed.X;
+
+            }
+            speed.X = 0;
+            speed.Y = 0;
+
+
+
+
+
+
         }
 
         
