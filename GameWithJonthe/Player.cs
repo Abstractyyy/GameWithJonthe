@@ -16,7 +16,7 @@ namespace GameWithJonthe
 
         Rectangle sourceRectangle;
 
-        Texture2D spriteBatch;
+        Texture2D spriteSheet;
 
         int HP;
         float Agility;
