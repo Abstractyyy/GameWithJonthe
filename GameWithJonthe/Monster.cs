@@ -20,7 +20,7 @@ namespace GameWithJonthe
         {
             spriteSheet = monsterTexture;
 
-            sourceRectangle = new Rectangle(0, 120, 50, 60);
+            sourceRectangle = new Rectangle(0, 120, 50, 50);
         }
 
         public void update()
@@ -35,7 +35,23 @@ namespace GameWithJonthe
             if (Elapsed > 150)
             {
                 Elapsed = 0;
-                sourceRectangle.X
+                sourceRectangle.X += 50;
+                if (sourceRectangle.X > 150)
+                {
+                    sourceRectangle.X = 0;
+                }
+                //Checks what key is pressed and sets sprite to match
+                KeyboardState pressedKeys = Keyboard.GetState();
+
+                if (pressedKeys.IsKeyDown(Keys.W))
+                    sourceRectangle.Y = 0;
+                if (pressedKeys.IsKeyDown(Keys.S))
+                    sourceRectangle.Y = 0;
+                if (pressedKeys.IsKeyDown(Keys.A))
+                    sourceRectangle.Y = 0;
+                if (pressedKeys.IsKeyDown(Keys.D))
+                    sourceRectangle.Y = 0;
+                //End of the keycheck
             }
         }
     }
