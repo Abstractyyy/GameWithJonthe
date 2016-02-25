@@ -28,7 +28,7 @@ namespace GameWithJonthe
         {
             player = new Player();
 
-            monster = new Monster(monsterTexture);
+           
 
             base.Initialize();
         }
@@ -37,6 +37,8 @@ namespace GameWithJonthe
         protected override void LoadContent()
         {
             monsterTexture = Content.Load<Texture2D>("Werewolf");
+
+            monster = new Monster(monsterTexture);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -68,8 +70,11 @@ namespace GameWithJonthe
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            
+            spriteBatch.Begin();
 
+            monster.draw(gameTime, spriteBatch);
+
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
