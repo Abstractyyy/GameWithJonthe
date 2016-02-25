@@ -28,7 +28,7 @@ namespace GameWithJonthe
         {
             player = new Player();
 
-           
+
 
             base.Initialize();
         }
@@ -71,7 +71,7 @@ namespace GameWithJonthe
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-
+            
             monster.draw(gameTime, spriteBatch);
 
             spriteBatch.End();

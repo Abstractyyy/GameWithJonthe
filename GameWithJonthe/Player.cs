@@ -106,19 +106,6 @@ namespace GameWithJonthe
             }
             speed.X = 0;
             speed.Y = 0;
-
-
-
-
-
-
         }
-
-        
-
-        
-
-
-
     }
 }
