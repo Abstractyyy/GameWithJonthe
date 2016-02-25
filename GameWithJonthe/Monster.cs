@@ -12,6 +12,9 @@ namespace GameWithJonthe
     {
         Texture2D spriteSheet;
         Rectangle sourceRectangle;
+        //Variables
+        int Health = 200;
+        double Elapsed = 0;
 
         public Monster(Texture2D monsterTexture)
         {
@@ -25,6 +28,15 @@ namespace GameWithJonthe
             
         }
 
-        
+        public void draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            if (Elapsed > 150)
+            {
+                Elapsed = 0;
+                sourceRectangle.X
+            }
+        }
     }
 }
