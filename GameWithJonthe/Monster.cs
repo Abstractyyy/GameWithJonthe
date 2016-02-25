@@ -12,6 +12,7 @@ namespace GameWithJonthe
     {
         Texture2D spriteSheet;
         Rectangle sourceRectangle;
+        Vector2 position;
         //Variables
         int Health = 200;
         double Elapsed = 0;
@@ -19,6 +20,7 @@ namespace GameWithJonthe
         public Monster(Texture2D monsterTexture)
         {
             spriteSheet = monsterTexture;
+            position = new Vector2(50, 50);
 
             sourceRectangle = new Rectangle(0, 120, 50, 50);
         }
@@ -53,6 +55,7 @@ namespace GameWithJonthe
                     sourceRectangle.Y = 0;
                 //End of the keycheck
             }
+            spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
         }
     }
 }
