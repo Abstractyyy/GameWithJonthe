@@ -59,7 +59,7 @@ namespace GameWithJonthe
 
             player.update(pressedKeys);
 
-            monster.update();
+            
 
             base.Update(gameTime);
         }
