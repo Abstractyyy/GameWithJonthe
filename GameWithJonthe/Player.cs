@@ -36,34 +36,35 @@ namespace GameWithJonthe
             sourceRectangle = new Rectangle(0, 0, 50, 50);
         }
 
-        public void draw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
+          {
+              elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsed > 150)
-            {
-                elapsed = 0;
-                sourceRectangle.X += 50;
-                if (sourceRectangle.X > 100)
-                {
-                    sourceRectangle.X = 0;
-                }
+            /*  if (elapsed > 150)
+              {
+                  elapsed = 0;
+                  sourceRectangle.X += 50;
+                  if (sourceRectangle.X > 100)
+                  {
+                      sourceRectangle.X = 0;
+                  }
 
-                //Checks what key is pressed and sets sprite to match
-                KeyboardState pressedKeys = Keyboard.GetState();
+                  //Checks what key is pressed and sets sprite to match
+                  KeyboardState pressedKeys = Keyboard.GetState();
 
-                if (pressedKeys.IsKeyDown(Keys.W))
-                    sourceRectangle.Y = 0;
-                if (pressedKeys.IsKeyDown(Keys.S))
-                    sourceRectangle.Y = 120;
-                if (pressedKeys.IsKeyDown(Keys.A))
-                    sourceRectangle.Y = 180;
-                if (pressedKeys.IsKeyDown(Keys.D))
-                    sourceRectangle.Y = 60;
-                //End of the keycheck
-            }
-            spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
-        }
+                  if (pressedKeys.IsKeyDown(Keys.W))
+                      sourceRectangle.Y = 0;
+                  if (pressedKeys.IsKeyDown(Keys.S))
+                      sourceRectangle.Y = 64;
+                  if (pressedKeys.IsKeyDown(Keys.A))
+                      sourceRectangle.Y = 192;
+                  if (pressedKeys.IsKeyDown(Keys.D))
+                      sourceRectangle.Y = 128;
+                  //End of the keycheck
+              } */
+
+              spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
+          }
 
         public void update(KeyboardState pressedKeys)
         {
