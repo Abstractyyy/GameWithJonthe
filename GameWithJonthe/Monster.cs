@@ -11,9 +11,9 @@ namespace GameWithJonthe
     class Monster
     {
         //Properties
-        Texture2D spriteSheet;
-        Rectangle sourceRectangle, hitbox;
-        Vector2 position, velocity;
+        private Texture2D spriteSheet;
+        private Rectangle sourceRectangle, hitbox;
+        private Vector2 position, velocity;
         
         //Variables
         int HPmonster = 200;
