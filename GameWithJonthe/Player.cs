@@ -63,8 +63,9 @@ namespace GameWithJonthe
                   KeyboardState pressedKeys = Keyboard.GetState();  //Checks what key is pressed and sets sprite to match, gets the keystate frome game1 update
 
                 //movement 
-                if (pressedKeys.IsKeyDown(Keys.W))    //up
+                  if (pressedKeys.IsKeyDown(Keys.W)||pressedKeys.IsKeyDown(Keys.A))    //up
                       sourceRectangle.Y = walkUp;       //
+
 
                   if (pressedKeys.IsKeyDown(Keys.S))    //down 
                       sourceRectangle.Y = walkDown;     //
