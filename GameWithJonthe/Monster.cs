@@ -18,6 +18,18 @@ namespace GameWithJonthe
         //Variables
         int HPmonster = 200;
         double Elapsed = 0;
+        //sourceRectangle.Y
+
+        const int ShootRight = 462;
+        const int ShootLeft = 330;
+        const int ShootUp = 264;
+        const int ShootDown = 396;
+        const int WalkUp = 0;
+        const int WalkLeft = 66;
+        const int WalkDown = 132;
+        const int WalkRight = 198;
+        //To reset the animation
+        const int ElapsedZero = 0;
 
 
         public Monster(Texture2D monsterTexture)
@@ -34,6 +46,8 @@ namespace GameWithJonthe
             position += velocity;   
         }
 
+        string pressed;
+
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
@@ -48,38 +62,57 @@ namespace GameWithJonthe
                     sourceRectangle.X = 0;
                 }
                 //Checks what key is pressed and sets sprite to match
+                #region Movement
                 KeyboardState pressedKeys = Keyboard.GetState();
 
                 if (pressedKeys.IsKeyDown(Keys.W))
                 {
-                    Elapsed = 0;
-                    sourceRectangle.Y = 0;
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = WalkUp;
+                    pressed = "W";
                 }
                 if (pressedKeys.IsKeyDown(Keys.S))
                 {
-                    Elapsed = 0;
-                    sourceRectangle.Y = 132;
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = WalkDown;
+                    pressed = "S";
                 }
                 if (pressedKeys.IsKeyDown(Keys.A))
                 {
-                    Elapsed = 0;
-                    sourceRectangle.Y = 66;
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = WalkLeft;
+                    pressed = "A";
                 }
                 if (pressedKeys.IsKeyDown(Keys.D))
                 {
-                    Elapsed = 0;
-                    sourceRectangle.Y = 198;
-                }      
-                if (pressedKeys.IsKeyDown(Keys.K) && pressedKeys.IsKeyDown(Keys.D))
-                {
-                    Elapsed = 0;
-                    sourceRectangle.Y = 462;
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = WalkRight;
+                    pressed = "D";
                 }
-                if(pressedKeys.IsKeyDown(Keys.K) && pressedKeys.IsKeyDown(Keys.A))
+#endregion
+
+                #region ShootingKeys
+                if (pressed == "D" && pressedKeys.IsKeyDown(Keys.K))
                 {
-                    Elapsed = 0;
-                    sourceRectangle.Y = 330;
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = ShootRight;
                 }
+                if(pressed == "A" && pressedKeys.IsKeyDown(Keys.K))
+                {
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = ShootLeft;
+                }
+                if (pressed == "W" && pressedKeys.IsKeyDown(Keys.K))
+                {
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = ShootUp;
+                }
+                if (pressed == "S" && pressedKeys.IsKeyDown(Keys.K))
+                {
+                    Elapsed = ElapsedZero;
+                    sourceRectangle.Y = ShootDown;
+                }
+                #endregion
                 //End of the keycheck
             }
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
