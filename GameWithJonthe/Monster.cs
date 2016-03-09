@@ -10,21 +10,23 @@ namespace GameWithJonthe
 {
     class Monster
     {
+        //Properties
         Texture2D spriteSheet;
-        Rectangle sourceRectangle;
+        Rectangle sourceRectangle, hitbox;
         Vector2 position, velocity;
+        
         //Variables
-        int Health = 200;
+        int HPmonster = 200;
         double Elapsed = 0;
+
 
         public Monster(Texture2D monsterTexture)
         {
+            hitbox = new Rectangle(0, 0, 50, 50);
             spriteSheet = monsterTexture;
             position = new Vector2(50, 50);
             velocity = new Vector2(0, 0);
-            sourceRectangle = new Rectangle(0, 0, 50, 50);
-
-           
+            sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, 50, 50);
         }
 
         public void update()
@@ -36,6 +38,7 @@ namespace GameWithJonthe
         {
             Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
+            //If statement showing what animation should be showing and when
             if (Elapsed > 150)
             {
                 Elapsed = 0;
@@ -66,10 +69,7 @@ namespace GameWithJonthe
                 {
                     Elapsed = 0;
                     sourceRectangle.X = 100;
-                }
-
-
-               
+                }      
                 //End of the keycheck
             }
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
