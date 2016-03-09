@@ -17,7 +17,7 @@ namespace GameWithJonthe
         
         //Variables
         int HPmonster = 200;
-        double Elapsed = 0;
+        private double Elapsed = 0;
         //sourceRectangle.Y
 
         const int ShootRight = 462;
