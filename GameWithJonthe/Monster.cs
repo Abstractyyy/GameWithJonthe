@@ -24,9 +24,9 @@ namespace GameWithJonthe
         {
             hitbox = new Rectangle(0, 0, 50, 50);
             spriteSheet = monsterTexture;
-            position = new Vector2(50, 50);
+            position = new Vector2(200, 200);
             velocity = new Vector2(0, 0);
-            sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, 50, 50);
+            sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, 50, 66);
         }
 
         public void update()
@@ -42,10 +42,10 @@ namespace GameWithJonthe
             if (Elapsed > 150)
             {
                 Elapsed = 0;
-                sourceRectangle.Y += 50;
-                if (sourceRectangle.Y > 150)
+                sourceRectangle.X += 60;
+                if (sourceRectangle.X > 480)
                 {
-                    sourceRectangle.Y = 0;
+                    sourceRectangle.X = 0;
                 }
                 //Checks what key is pressed and sets sprite to match
                 KeyboardState pressedKeys = Keyboard.GetState();
@@ -53,23 +53,33 @@ namespace GameWithJonthe
                 if (pressedKeys.IsKeyDown(Keys.W))
                 {
                     Elapsed = 0;
-                    sourceRectangle.X = 150;
+                    sourceRectangle.Y = 0;
                 }
                 if (pressedKeys.IsKeyDown(Keys.S))
                 {
                     Elapsed = 0;
-                    sourceRectangle.X = 50;
+                    sourceRectangle.Y = 132;
                 }
                 if (pressedKeys.IsKeyDown(Keys.A))
                 {
                     Elapsed = 0;
-                    sourceRectangle.X = 0;
+                    sourceRectangle.Y = 66;
                 }
                 if (pressedKeys.IsKeyDown(Keys.D))
                 {
                     Elapsed = 0;
-                    sourceRectangle.X = 100;
+                    sourceRectangle.Y = 198;
                 }      
+                if (pressedKeys.IsKeyDown(Keys.K) && pressedKeys.IsKeyDown(Keys.D))
+                {
+                    Elapsed = 0;
+                    sourceRectangle.Y = 462;
+                }
+                if(pressedKeys.IsKeyDown(Keys.K) && pressedKeys.IsKeyDown(Keys.A))
+                {
+                    Elapsed = 0;
+                    sourceRectangle.Y = 330;
+                }
                 //End of the keycheck
             }
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
