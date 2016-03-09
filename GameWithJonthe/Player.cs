@@ -22,10 +22,12 @@ namespace GameWithJonthe
         float Agility;
         int Mana;
 
-        const int walkUp    = 576;
-        const int walkDown  = 704;
-        const int walkLeft  = 640;
-        const int walkRight = 768;
+        const int walkUp    = 512;
+        const int walkDown  = 640;
+        const int walkLeft  = 576;
+        const int walkRight = 704;
+        const int walkAnimationWidth = 8;
+        const int playerHitbox = 64;
 
 
 
@@ -39,37 +41,45 @@ namespace GameWithJonthe
                 
             position        = new Vector2(50, 50);
             velocity        = new Vector2(0, 0);
-            sourceRectangle = new Rectangle(0, 0, 50, 50);
+            sourceRectangle = new Rectangle(0, 0, 64, 64);
         }
 
          public void draw(GameTime gameTime, SpriteBatch spriteBatch)
           {
               elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-              if (elapsed > 150)
+              if (elapsed > 150)    //the animation speed
               {
                   elapsed = 0;
-                  sourceRectangle.X += 64;
-                  if (sourceRectangle.X > 384)
-                  {
+                  sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
+
+                
+                  if (sourceRectangle.X > walkAnimationWidth*playerHitbox)     //resets the animation box
+                {
                       sourceRectangle.X = 0;
                   }
 
-                  //Checks what key is pressed and sets sprite to match
-                  KeyboardState pressedKeys = Keyboard.GetState();
+                  
+                  KeyboardState pressedKeys = Keyboard.GetState();  //Checks what key is pressed and sets sprite to match, gets the keystate frome game1 update
 
-                  if (pressedKeys.IsKeyDown(Keys.W))
-                      sourceRectangle.Y = walkUp;
-                  if (pressedKeys.IsKeyDown(Keys.S))
-                      sourceRectangle.Y = walkDown;
-                  if (pressedKeys.IsKeyDown(Keys.A))
-                      sourceRectangle.Y = walkLeft;
-                  if (pressedKeys.IsKeyDown(Keys.D))
-                      sourceRectangle.Y = walkRight;
+                //movement 
+                if (pressedKeys.IsKeyDown(Keys.W))    //up
+                      sourceRectangle.Y = walkUp;       //
+
+                  if (pressedKeys.IsKeyDown(Keys.S))    //down 
+                      sourceRectangle.Y = walkDown;     //
+
+                  if (pressedKeys.IsKeyDown(Keys.A))    //left
+                      sourceRectangle.Y = walkLeft;     //
+
+                  if (pressedKeys.IsKeyDown(Keys.D))    //right
+                      sourceRectangle.Y = walkRight;    //
+                //end of movement
+
                   //End of the keycheck
               } 
 
-              spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
+              spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White); //draws the player sprite whith white background
           }
 
         public void update(KeyboardState pressedKeys)
