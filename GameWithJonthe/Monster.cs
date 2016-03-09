@@ -56,7 +56,7 @@ namespace GameWithJonthe
             if (Elapsed > 150)
             {
                 Elapsed = 0;
-                sourceRectangle.X += 64;
+                sourceRectangle.X += 60;
                 if (sourceRectangle.X > 480)
                 {
                     sourceRectangle.X = 0;

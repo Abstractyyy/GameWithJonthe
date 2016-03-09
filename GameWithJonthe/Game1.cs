@@ -62,7 +62,7 @@ namespace GameWithJonthe
 
             KeyboardState pressedKeys = Keyboard.GetState();
 
-            player.update(pressedKeys);
+           
 
             
 
