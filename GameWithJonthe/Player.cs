@@ -22,6 +22,12 @@ namespace GameWithJonthe
         float Agility;
         int Mana;
 
+        const int walkUp    = 576;
+        const int walkDown  = 704;
+        const int walkLeft  = 640;
+        const int walkRight = 768;
+
+
 
 
         double elapsed = 0;
@@ -53,13 +59,13 @@ namespace GameWithJonthe
                   KeyboardState pressedKeys = Keyboard.GetState();
 
                   if (pressedKeys.IsKeyDown(Keys.W))
-                      sourceRectangle.Y = 0;
+                      sourceRectangle.Y = walkUp;
                   if (pressedKeys.IsKeyDown(Keys.S))
-                      sourceRectangle.Y = 64;
+                      sourceRectangle.Y = walkDown;
                   if (pressedKeys.IsKeyDown(Keys.A))
-                      sourceRectangle.Y = 192;
+                      sourceRectangle.Y = walkLeft;
                   if (pressedKeys.IsKeyDown(Keys.D))
-                      sourceRectangle.Y = 128;
+                      sourceRectangle.Y = walkRight;
                   //End of the keycheck
               } 
 
