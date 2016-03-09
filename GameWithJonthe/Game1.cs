@@ -12,6 +12,7 @@ namespace GameWithJonthe
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
+        Texture2D playerTexture;
 
         Player player;
 
@@ -37,8 +38,10 @@ namespace GameWithJonthe
         protected override void LoadContent()
         {
             monsterTexture = Content.Load<Texture2D>("Werewolf");
+            playerTexture =  Content.Load<Texture2D>("player");
 
             monster = new Monster(monsterTexture);
+            player  = new Player(playerTexture);
 
             player = new Player();
 

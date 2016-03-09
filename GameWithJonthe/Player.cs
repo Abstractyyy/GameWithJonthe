@@ -11,7 +11,7 @@ namespace GameWithJonthe
     class Player
     {
         Vector2 position;
-        Vector2 speed;
+        Vector2 velocity;
         Vector2 agilityAccel;
 
         Rectangle sourceRectangle;
@@ -25,6 +25,16 @@ namespace GameWithJonthe
 
 
         double elapsed = 0;
+
+        public Player(Texture2D playerTexture)
+        {
+            spriteSheet = playerTexture;
+
+                
+            position        = new Vector2(50, 50);
+            velocity        = new Vector2(0, 0);
+            sourceRectangle = new Rectangle(0, 0, 50, 50);
+        }
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -78,7 +88,7 @@ namespace GameWithJonthe
 
                 }
                 position.X = position.X += speed.X;
-                
+
             }
 
             if (pressedKeys.IsKeyDown(Keys.S))
@@ -107,5 +117,7 @@ namespace GameWithJonthe
             speed.X = 0;
             speed.Y = 0;
         }
+
+        
     }
 }
