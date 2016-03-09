@@ -67,55 +67,55 @@ namespace GameWithJonthe
 
         public void update(KeyboardState pressedKeys)
         {
-            // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility speed. agilityAccel är hur snabbt man kan springa till max hastigheten agility
+            // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
             if (pressedKeys.IsKeyDown(Keys.W))
             {
-                while (speed.X < Agility)
+                while (velocity.X < Agility)
                 {
-                    position.Y = position.Y += speed.Y;
-                    speed.Y += (Agility / 10);
+                    position.Y = position.Y += velocity.Y;
+                    velocity.Y += (Agility / 10);
 
                 }
-                position.Y = position.Y += speed.Y;
+                position.Y = position.Y += velocity.Y;
             }
 
             if (pressedKeys.IsKeyDown(Keys.A))
             {
-                while (speed.X < Agility)
+                while (velocity.X < Agility)
                 {
-                    position.X = position.X -= speed.X;
-                    speed.X += (Agility / 10);
+                    position.X = position.X -= velocity.X;
+                    velocity.X += (Agility / 10);
 
                 }
-                position.X = position.X += speed.X;
+                position.X = position.X += velocity.X;
 
             }
 
             if (pressedKeys.IsKeyDown(Keys.S))
             {
-                while (speed.X < Agility)
+                while (velocity.X < Agility)
                 {
-                    position.Y -= speed.Y;
-                    speed.Y += (Agility / 10);
+                    position.Y -= velocity.Y;
+                    velocity.Y += (Agility / 10);
 
                 }
-                position.Y -= speed.Y;
+                position.Y -= velocity.Y;
 
             }
 
             if (pressedKeys.IsKeyDown(Keys.D))
             {
-                while (speed.X < Agility)
+                while (velocity.X < Agility)
                 {
-                    position.X = position.X += speed.X;
-                    speed.X += (Agility / 10);
+                    position.X = position.X += velocity.X;
+                    velocity.X += (Agility / 10);
 
                 }
-                position.X = position.X += speed.X;
+                position.X = position.X += velocity.X;
 
             }
-            speed.X = 0;
-            speed.Y = 0;
+            velocity.X = 0;
+            velocity.Y = 0;
         }
 
         
