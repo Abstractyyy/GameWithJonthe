@@ -78,6 +78,7 @@ namespace GameWithJonthe
             spriteBatch.Begin();
             
             monster.draw(gameTime, spriteBatch);
+            player.draw(gameTime, spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
