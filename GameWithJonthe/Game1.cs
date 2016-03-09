@@ -43,7 +43,7 @@ namespace GameWithJonthe
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
 
-            player = new Player();
+            
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
