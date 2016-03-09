@@ -37,7 +37,7 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
-            monsterTexture = Content.Load<Texture2D>("Werewolf");
+            monsterTexture = Content.Load<Texture2D>("Skelleton");
             playerTexture =  Content.Load<Texture2D>("player");
 
             monster = new Monster(monsterTexture);
