@@ -40,7 +40,7 @@ namespace GameWithJonthe
           {
               elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            /*  if (elapsed > 150)
+              if (elapsed > 150)
               {
                   elapsed = 0;
                   sourceRectangle.X += 50;
@@ -61,7 +61,7 @@ namespace GameWithJonthe
                   if (pressedKeys.IsKeyDown(Keys.D))
                       sourceRectangle.Y = 128;
                   //End of the keycheck
-              } */
+              } 
 
               spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
           }
