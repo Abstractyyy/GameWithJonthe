@@ -28,6 +28,7 @@ namespace GameWithJonthe
         const int walkRight = 704;
         const int walkAnimationWidth = 8;
         const int playerHitbox = 64;
+        const int animationSpeed = 150;
 
         int lastDirection;
 
@@ -63,30 +64,31 @@ namespace GameWithJonthe
                 sourceRectangle.Y = walkUp;
                 lastDirection = walkUp;
                 #region
-               
+
+                //  sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
+
+
+                if (elapsed > animationSpeed)    //the animation speed
+                {
+                    elapsed = 0;
                     sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
 
 
-                if (sourceRectangle.X > walkAnimationWidth * playerHitbox)     //resets the animation box
-                {
-                    sourceRectangle.X = 0;
-                }
-                if (elapsed > 150)    //the animation speed
-                {
-                    elapsed = 0;
+                    if (sourceRectangle.X > walkAnimationWidth * playerHitbox)     //resets the animation box
+                    {
+                        sourceRectangle.X = 0;
+                    }
                 }
 
-             
+
                 #endregion
-
-
             }
             if (pressedKeys.IsKeyDown(Keys.S))  //down
             {
                 sourceRectangle.Y = walkDown;
                 lastDirection = walkDown;
                 #region
-                if (elapsed > 150)    //the animation speed
+                if (elapsed > animationSpeed)    //the animation speed
                 {
                     elapsed = 0;
                     sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
@@ -104,7 +106,7 @@ namespace GameWithJonthe
                 sourceRectangle.Y = walkLeft;
                 lastDirection = walkLeft;
                 #region 
-                if (elapsed > 150)    //the animation speed
+                if (elapsed > animationSpeed)    //the animation speed
                 {
                     elapsed = 0;
                     sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
@@ -124,7 +126,7 @@ namespace GameWithJonthe
                 sourceRectangle.Y = walkRight;
                 lastDirection = walkRight;
                 #region
-                if (elapsed > 150)    //the animation speed
+                if (elapsed > animationSpeed)    //the animation speed
                 {
                     elapsed = 0;
                     sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
