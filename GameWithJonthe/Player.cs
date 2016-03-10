@@ -139,8 +139,7 @@ namespace GameWithJonthe
             }
             //end of movement
 
-            sourceRectangle.X = 0;
-            sourceRectangle.Y = lastDirection;
+            
 
 
 
