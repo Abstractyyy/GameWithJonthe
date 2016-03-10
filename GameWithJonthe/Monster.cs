@@ -15,6 +15,8 @@ namespace GameWithJonthe
         private Rectangle sourceRectangle, hitbox;
         private Vector2 position, velocity;
         
+        
+        
         //Variables
         int HPmonster = 200;
         private double Elapsed = 0;
@@ -45,8 +47,11 @@ namespace GameWithJonthe
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
         }
 
+
+
         public void update()
         {
+
             position += velocity;   
         }
 
@@ -59,7 +64,7 @@ namespace GameWithJonthe
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
 
-               if (pressedKeys.IsKeyDown(Keys.W))
+               if ()
                 {      
                     if (Elapsed > 50)
                     {

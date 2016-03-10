@@ -19,10 +19,8 @@ namespace GameWithJonthe
         Texture2D spriteSheet;
 
         int HP;
-        float agility = 10;
-        float acceleration;
-              
-        int mana;
+        float Agility;
+        int Mana;
 
         const int walkUp = 512;
         const int walkDown = 640;
@@ -160,30 +158,49 @@ namespace GameWithJonthe
 
     public void update(KeyboardState pressedKeys)
     {
-            velocity.Y = 1;
-            velocity.X = 1;
         // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
-        if (pressedKeys.IsKeyDown(Keys.W))
-        {
-                position.Y = position.Y -= velocity.Y; // så han rör sig
-    
-        }
-
-        if (pressedKeys.IsKeyDown(Keys.S))
+        if (pressedKeys.IsKeyDown(Keys.W) && velocity.X < Agility)
         {
                 position.Y = position.Y += velocity.Y;
 
+
+                velocity.Y += (Agility / 10); //accelerationen 
+
+         }
+
+        if (pressedKeys.IsKeyDown(Keys.A))
+        {
+            while (velocity.X < Agility)
+            {
+                position.X = position.X -= velocity.X;
+                velocity.X += (Agility / 10);
+
+            }
+            position.X = position.X += velocity.X;
+
         }
 
         if (pressedKeys.IsKeyDown(Keys.S))
         {
-                position.X = position.X -= velocity.X;
+            while (velocity.X < Agility)
+            {
+                position.Y -= velocity.Y;
+                velocity.Y += (Agility / 10);
+
+            }
+            position.Y -= velocity.Y;
 
         }
 
         if (pressedKeys.IsKeyDown(Keys.D))
         {
+            while (velocity.X < Agility)
+            {
                 position.X = position.X += velocity.X;
+                velocity.X += (Agility / 10);
+
+            }
+            position.X = position.X += velocity.X;
 
         }
         velocity.X = 0;

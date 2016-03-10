@@ -65,8 +65,6 @@ namespace GameWithJonthe
 
             player.update(pressedKeys);
 
-            
-
             base.Update(gameTime);
         }
 
