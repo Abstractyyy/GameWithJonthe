@@ -52,7 +52,7 @@ namespace GameWithJonthe
 
         public void update(Vector2 playerPosition)
         {
-            playerPosition = PlayerPosition;
+            PlayerPosition = playerPosition;
             position += velocity;   
         }
 
@@ -65,9 +65,10 @@ namespace GameWithJonthe
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
 
-               if (PlayerPosition)
-                {      
-                    if (Elapsed > 50)
+               if (position.Y > PlayerPosition.Y)
+                {
+                velocity.Y = -1;
+                if (Elapsed > 50)
                     {
                         Elapsed = 0;
                         sourceRectangle.X += WaH;
@@ -78,11 +79,12 @@ namespace GameWithJonthe
                         }
                     }
                     sourceRectangle.Y = WalkUp;
-                    pressed = "W";       
+                    pressed = "W";
+                          
                 }
-                if (pressedKeys.IsKeyDown(Keys.S))
+                if (position.Y < PlayerPosition.Y)
                 {
-                    
+                velocity.Y = 1;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -96,9 +98,9 @@ namespace GameWithJonthe
                     sourceRectangle.Y = WalkDown;
                     pressed = "S";
                 }
-               if (pressedKeys.IsKeyDown(Keys.A))
+               if (position.X > PlayerPosition.X)
                 {
-                    
+                velocity.X = -1;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -111,9 +113,9 @@ namespace GameWithJonthe
                     sourceRectangle.Y = WalkLeft;
                     pressed = "A";
                 }
-                if (pressedKeys.IsKeyDown(Keys.D))
+                if (position.X < PlayerPosition.X)
                 {
-                
+                velocity.X = 1;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -126,7 +128,11 @@ namespace GameWithJonthe
                     sourceRectangle.Y = WalkRight;
                     pressed = "D";
                 }
-            
+            if (position.Y == PlayerPosition.Y)
+                velocity.Y = 0;
+            if (position.X == PlayerPosition.X)
+                velocity.X = 0;
+
             #endregion
 
             #region ShootingKeys
