@@ -59,10 +59,11 @@ namespace GameWithJonthe
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            
 
             KeyboardState pressedKeys = Keyboard.GetState();
 
-           
+            player.update(pressedKeys);
 
             
 
@@ -77,6 +78,7 @@ namespace GameWithJonthe
             
             monster.draw(gameTime, spriteBatch);
             player.draw(gameTime, spriteBatch);
+
 
             spriteBatch.End();
             base.Draw(gameTime);
