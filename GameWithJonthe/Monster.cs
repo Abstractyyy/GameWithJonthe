@@ -13,11 +13,12 @@ namespace GameWithJonthe
         //Properties
         private Texture2D spriteSheet;
         private Rectangle sourceRectangle, hitbox;
-        private Vector2 position, velocity;
+        private Vector2 position, velocity, PlayerPosition;
         
         
         
         //Variables
+        
         int HPmonster = 200;
         private double Elapsed = 0;
         
@@ -51,7 +52,7 @@ namespace GameWithJonthe
 
         public void update(Vector2 playerPosition)
         {
-
+            playerPosition = PlayerPosition;
             position += velocity;   
         }
 
@@ -64,7 +65,7 @@ namespace GameWithJonthe
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
 
-               if ()
+               if (PlayerPosition)
                 {      
                     if (Elapsed > 50)
                     {
