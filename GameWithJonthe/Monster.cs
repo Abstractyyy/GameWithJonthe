@@ -18,7 +18,7 @@ namespace GameWithJonthe
         //Variables
         int HPmonster = 200;
         private double Elapsed = 0;
-        private double ShootElapsed = 0;
+        
 
         #region Constants
         //sourceRectangle.Y
@@ -54,31 +54,29 @@ namespace GameWithJonthe
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+            Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
             //Checks what key is pressed and sets sprite to match
             #region Movement
-                KeyboardState pressedKeys = Keyboard.GetState();
+            KeyboardState pressedKeys = Keyboard.GetState();
 
-                if (pressedKeys.IsKeyDown(Keys.W))
-                {
-                    Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-            if (Elapsed > 50)
-            {
-                Elapsed = 0;
-                sourceRectangle.X += WaH;
-                if (sourceRectangle.X > 512
-                        )
-                {
-                    sourceRectangle.X = 0;
-                }
+               if (pressedKeys.IsKeyDown(Keys.W))
+                {      
+                    if (Elapsed > 50)
+                    {
+                        Elapsed = 0;
+                        sourceRectangle.X += WaH;
+                        if (sourceRectangle.X > 512
+                                )
+                        {
+                            sourceRectangle.X = 0;
+                        }
                     }
-                    
                     sourceRectangle.Y = WalkUp;
-                    pressed = "W";
+                    pressed = "W";       
                 }
                 if (pressedKeys.IsKeyDown(Keys.S))
                 {
-                    Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+                    
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -92,9 +90,9 @@ namespace GameWithJonthe
                     sourceRectangle.Y = WalkDown;
                     pressed = "S";
                 }
-                if (pressedKeys.IsKeyDown(Keys.A))
+               if (pressedKeys.IsKeyDown(Keys.A))
                 {
-                    Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+                    
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -107,31 +105,31 @@ namespace GameWithJonthe
                     sourceRectangle.Y = WalkLeft;
                     pressed = "A";
                 }
-            if (pressedKeys.IsKeyDown(Keys.D))
-            {
-                Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (Elapsed > 50)
+                if (pressedKeys.IsKeyDown(Keys.D))
                 {
-                    Elapsed = 0;
-                    sourceRectangle.X += WaH;
-                    if (sourceRectangle.X > 512)
+                
+                    if (Elapsed > 50)
                     {
-                        sourceRectangle.X = 0;
+                        Elapsed = 0;
+                        sourceRectangle.X += WaH;
+                        if (sourceRectangle.X > 512)
+                        {
+                            sourceRectangle.X = 0;
+                        }
                     }
+                    sourceRectangle.Y = WalkRight;
+                    pressed = "D";
                 }
-                sourceRectangle.Y = WalkRight;
-                pressed = "D";
-            }
-            else
+            
             #endregion
 
             #region ShootingKeys
-                if (pressed == "D" && pressedKeys.IsKeyDown(Keys.K))
+            if (pressed == "D" && pressedKeys.IsKeyDown(Keys.K))
             {
-                ShootElapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (ShootElapsed > 50)
+                
+                if (Elapsed > 50)
                 {
-                    ShootElapsed = 0;
+                    Elapsed = 0;
                     sourceRectangle.X += WaH;
                     if (sourceRectangle.X > 832-64)
                     {
@@ -140,12 +138,12 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootRight;
             }
-            else if(pressed == "A" && pressedKeys.IsKeyDown(Keys.K))
+            if(pressed == "A" && pressedKeys.IsKeyDown(Keys.K))
                 {
-                ShootElapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (ShootElapsed > 50)
+               
+                if (Elapsed > 50)
                 {
-                    ShootElapsed = 0;
+                    Elapsed = 0;
                     sourceRectangle.X += WaH;
                     if (sourceRectangle.X > 832 - 64)
                     {
@@ -153,13 +151,13 @@ namespace GameWithJonthe
                     }
                 }
                 sourceRectangle.Y = ShootLeft;
-                }
-            else if (pressed == "W" && pressedKeys.IsKeyDown(Keys.K))
+            }
+            if (pressed == "W" && pressedKeys.IsKeyDown(Keys.K))
                 {
-                ShootElapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (ShootElapsed > 50)
+                
+                if (Elapsed > 50)
                 {
-                    ShootElapsed = 0;
+                    Elapsed = 0;
                     sourceRectangle.X += WaH;
                     if (sourceRectangle.X > 832 - 64)
                     {
@@ -168,12 +166,12 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootUp;
                 }
-            else if (pressed == "S" && pressedKeys.IsKeyDown(Keys.K))
+            if (pressed == "S" && pressedKeys.IsKeyDown(Keys.K))
             {
-                ShootElapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-                if (ShootElapsed > 50)
+                
+                if (Elapsed > 50)
                 {
-                    ShootElapsed = 0;
+                    Elapsed = 0;
                     sourceRectangle.X += WaH;
                     if (sourceRectangle.X > 832-64)
                     {
@@ -182,8 +180,7 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootDown;
             }
-            else
-                ShootElapsed = 0;
+            
                 
                 #endregion
             //End of the keycheck
