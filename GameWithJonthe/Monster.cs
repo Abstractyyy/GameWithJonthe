@@ -64,7 +64,7 @@ namespace GameWithJonthe
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
 
-               if ()
+               if (pressedKeys.IsKeyDown(Keys.W))
                 {      
                     if (Elapsed > 50)
                     {
