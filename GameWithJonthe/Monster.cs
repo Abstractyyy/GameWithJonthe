@@ -50,7 +50,7 @@ namespace GameWithJonthe
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            
+
           
 
             //If statement showing what animation should be showing and when
@@ -62,14 +62,14 @@ namespace GameWithJonthe
                 if (pressedKeys.IsKeyDown(Keys.W))
                 {
                     Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
-                    if (Elapsed > 150)
-                    {
-                        Elapsed = 0;
-                        sourceRectangle.X += WaH;
-                        if (sourceRectangle.X > 512)
-                        {
-                            sourceRectangle.X = 0;
-                        }
+            if (Elapsed > 150)
+            {
+                Elapsed = 0;
+                sourceRectangle.X += WaH;
+                if (sourceRectangle.X > 512)
+                {
+                    sourceRectangle.X = 0;
+                }
                     }
                     Elapsed = ElapsedZero;
                     sourceRectangle.Y = WalkUp;
