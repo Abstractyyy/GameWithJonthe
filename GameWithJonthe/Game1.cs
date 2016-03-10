@@ -63,7 +63,8 @@ namespace GameWithJonthe
 
             KeyboardState pressedKeys = Keyboard.GetState();
 
-            player.update(pressedKeys);
+        Vector2 playerPostition = player.update(pressedKeys);
+            monster.update(playerPostition);
 
             
 
