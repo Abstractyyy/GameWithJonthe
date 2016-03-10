@@ -103,7 +103,7 @@ namespace GameWithJonthe
             {
                 sourceRectangle.Y = walkLeft;
                 lastDirection = walkLeft;
-                #region
+                #region 
                 if (elapsed > 150)    //the animation speed
                 {
                     elapsed = 0;
@@ -115,7 +115,8 @@ namespace GameWithJonthe
                         sourceRectangle.X = 0;
                     }
                 }
-                #endregion
+                #endregion 
+                
             }
 
             if (pressedKeys.IsKeyDown(Keys.D))  //right
