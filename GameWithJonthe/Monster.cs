@@ -49,7 +49,7 @@ namespace GameWithJonthe
 
 
 
-        public void update()
+        public void update(Vector2 playerPosition)
         {
 
             position += velocity;   
