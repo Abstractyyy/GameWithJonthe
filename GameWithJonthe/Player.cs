@@ -28,7 +28,7 @@ namespace GameWithJonthe
         const int walkRight = 704;
         const int walkAnimationWidth = 8;
         const int playerHitbox = 64;
-        const int animationSpeed = 150;
+        const int animationSpeed = 50;
 
         int lastDirection;
 
@@ -56,8 +56,8 @@ namespace GameWithJonthe
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
 
-
-
+            //movement animation
+            #region
             //movement animation
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
@@ -140,13 +140,14 @@ namespace GameWithJonthe
                 #endregion
             }
             //end of movement
-
-            
-
+            #endregion
 
 
 
-            //End of the keycheck
+
+
+
+            //draws the character
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White); //draws the player sprite whith white background
         }
 
@@ -158,16 +159,14 @@ namespace GameWithJonthe
     public void update(KeyboardState pressedKeys)
     {
         // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
-        if (pressedKeys.IsKeyDown(Keys.W))
+        if (pressedKeys.IsKeyDown(Keys.W) && velocity.X < Agility)
         {
-            while (velocity.X < Agility)
-            {
                 position.Y = position.Y += velocity.Y;
-                velocity.Y += (Agility / 10);
 
-            }
-            position.Y = position.Y += velocity.Y;
-        }
+
+                velocity.Y += (Agility / 10); //accelerationen 
+
+         }
 
         if (pressedKeys.IsKeyDown(Keys.A))
         {
