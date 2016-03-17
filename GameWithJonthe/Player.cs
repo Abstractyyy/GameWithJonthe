@@ -159,8 +159,8 @@ namespace GameWithJonthe
 
     public Vector2 update(KeyboardState pressedKeys)
     {
-            velocity.Y = 1;
-            velocity.X = 1;
+            velocity.Y = 2;
+            velocity.X = 2;
         // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
         if (pressedKeys.IsKeyDown(Keys.W))
         {
