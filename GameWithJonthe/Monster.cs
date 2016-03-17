@@ -6,13 +6,14 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+
 namespace GameWithJonthe
 {
     class Monster
     {
         //Properties
         private Texture2D spriteSheet;
-        private Rectangle sourceRectangle, hitbox;
+        private Rectangle sourceRectangle, hitbox, wholeScreen;
         private Vector2 position, velocity, PlayerPosition;
         
         
@@ -45,6 +46,7 @@ namespace GameWithJonthe
             spriteSheet = monsterTexture;
             position = new Vector2(200, 200);
             velocity = new Vector2(0, 0);
+            wholeScreen = new Rectangle(0, 0, 500, 500);
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
         }
 
@@ -55,8 +57,7 @@ namespace GameWithJonthe
             PlayerPosition = playerPosition;
             position += velocity;   
         }
-
-        string pressed;
+        
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -65,9 +66,9 @@ namespace GameWithJonthe
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
 
-               if (position.Y > PlayerPosition.Y)
+            if (position.Y-PlayerPosition.Y > Math.Abs(position.X-PlayerPosition.X))
                 {
-                velocity.Y = -1;
+                velocity.Y = -0;
                 if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -79,12 +80,12 @@ namespace GameWithJonthe
                         }
                     }
                     sourceRectangle.Y = WalkUp;
-                    pressed = "W";
                           
                 }
-                if (position.Y < PlayerPosition.Y)
+                
+                if (position.Y - PlayerPosition.Y < -Math.Abs(position.X - PlayerPosition.X))
                 {
-                velocity.Y = 1;
+                velocity.Y = 0;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -96,11 +97,11 @@ namespace GameWithJonthe
                     }
                     
                     sourceRectangle.Y = WalkDown;
-                    pressed = "S";
+
                 }
-               if (position.X > PlayerPosition.X)
+               if (position.X - PlayerPosition.X > Math.Abs(position.Y - PlayerPosition.Y))
                 {
-                velocity.X = -1;
+                velocity.X = -0;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -111,11 +112,11 @@ namespace GameWithJonthe
                         }
                     }
                     sourceRectangle.Y = WalkLeft;
-                    pressed = "A";
+          
                 }
-                if (position.X < PlayerPosition.X)
+                if (position.X - PlayerPosition.X < -Math.Abs(position.Y - PlayerPosition.Y))
                 {
-                velocity.X = 1;
+                velocity.X = 0;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -126,7 +127,6 @@ namespace GameWithJonthe
                         }
                     }
                     sourceRectangle.Y = WalkRight;
-                    pressed = "D";
                 }
             if (position.Y == PlayerPosition.Y)
                 velocity.Y = 0;
@@ -136,7 +136,7 @@ namespace GameWithJonthe
             #endregion
 
             #region ShootingKeys
-            if (pressed == "D" && pressedKeys.IsKeyDown(Keys.K))
+            if (PlayerPosition.X - position.X <= 50 && PlayerPosition.X - position.X > 0 && PlayerPosition.Y - position.Y <= 100 && PlayerPosition.Y - position.Y >= -100) 
             {
                 
                 if (Elapsed > 50)
@@ -150,7 +150,7 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootRight;
             }
-            if(pressed == "A" && pressedKeys.IsKeyDown(Keys.K))
+            if(PlayerPosition.X - position.X >= -50 && PlayerPosition.X - position.X < -0 && PlayerPosition.Y - position.Y <= 100 && PlayerPosition.Y - position.Y >= -100)
                 {
                
                 if (Elapsed > 50)
@@ -164,7 +164,7 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootLeft;
             }
-            if (pressed == "W" && pressedKeys.IsKeyDown(Keys.K))
+            if (PlayerPosition.Y - position.Y >= -50 && PlayerPosition.Y - position.Y < -0 && PlayerPosition.X - position.X <= 100 && PlayerPosition.X - position.X >= -100)
                 {
                 
                 if (Elapsed > 50)
@@ -178,7 +178,7 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootUp;
                 }
-            if (pressed == "S" && pressedKeys.IsKeyDown(Keys.K))
+            if (PlayerPosition.Y - position.Y <= 50 && PlayerPosition.Y - position.Y > 0 && PlayerPosition.X - position.X <= 100 && PlayerPosition.X - position.X >= -100)
             {
                 
                 if (Elapsed > 50)
@@ -192,6 +192,7 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootDown;
             }
+            
             
                 
                 #endregion
