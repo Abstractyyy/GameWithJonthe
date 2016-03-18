@@ -68,7 +68,7 @@ namespace GameWithJonthe
 
             if (position.Y-PlayerPosition.Y > Math.Abs(position.X-PlayerPosition.X))
                 {
-                velocity.Y = -0;
+                velocity.Y = -1;
                 if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -85,7 +85,7 @@ namespace GameWithJonthe
                 
                 if (position.Y - PlayerPosition.Y < -Math.Abs(position.X - PlayerPosition.X))
                 {
-                velocity.Y = 0;
+                velocity.Y = 1;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -101,7 +101,7 @@ namespace GameWithJonthe
                 }
                if (position.X - PlayerPosition.X > Math.Abs(position.Y - PlayerPosition.Y))
                 {
-                velocity.X = -0;
+                velocity.X = -1;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
@@ -116,7 +116,7 @@ namespace GameWithJonthe
                 }
                 if (position.X - PlayerPosition.X < -Math.Abs(position.Y - PlayerPosition.Y))
                 {
-                velocity.X = 0;
+                velocity.X = 1;
                     if (Elapsed > 50)
                     {
                         Elapsed = 0;
