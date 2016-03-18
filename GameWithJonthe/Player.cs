@@ -10,6 +10,8 @@ namespace GameWithJonthe
 {
     class Player
     {
+        PlayerAttack playerAttack;
+
         Vector2 position;
         Vector2 velocity;
         Vector2 agilityAccel;
@@ -63,7 +65,7 @@ namespace GameWithJonthe
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
                 sourceRectangle.Y = walkUp;
-                lastDirection = walkUp;
+                lastDirection = walkUp; // visar att det sista hållet som spelaren gick åt ska vara det hållet som spelaren står åt
                 #region
 
                 //  sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
@@ -150,7 +152,7 @@ namespace GameWithJonthe
 
             //draws the character
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White); //draws the player sprite whith white background
-        }
+        }  // Gå animeringen hos spelaren
 
 
 
@@ -161,6 +163,7 @@ namespace GameWithJonthe
     {
             velocity.Y = 2;
             velocity.X = 2;
+            
         // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
         if (pressedKeys.IsKeyDown(Keys.W))
         {
@@ -186,10 +189,29 @@ namespace GameWithJonthe
         }
         velocity.X = 0;
         velocity.Y = 0;
-
+         
+        if (pressedKeys.IsKeyDown(Keys.B))
+            {
+               PlayerAttack.bow(lastDirection); 
+}
+            
             return position;
     }
 
 }
+    class PlayerAttack
+    {
+
+        
+
+        double elapsed = 0;
+
+        public void bow(int lastDirection )
+        {
+            Texture2D playerWithBow = 
+        }
+
+    }
+
 }
 
