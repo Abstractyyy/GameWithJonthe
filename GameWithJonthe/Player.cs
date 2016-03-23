@@ -190,10 +190,7 @@ namespace GameWithJonthe
         velocity.X = 0;
         velocity.Y = 0;
          
-        if (pressedKeys.IsKeyDown(Keys.B))
-            {
-               PlayerAttack.bow(lastDirection); 
-}
+       
             
             return position;
     }
@@ -201,17 +198,39 @@ namespace GameWithJonthe
 }
     class PlayerAttack
     {
+        const int walkUpBow    = 512;
+        const int walkDownBow  = 640;
+        const int walkLeftBow  = 576;
+        const int walkRightBow = 704;
 
-        
+        Texture2D playerWithBow;
+        Texture2D playerWithSword;
+
 
         double elapsed = 0;
 
         public void bow(int lastDirection )
         {
-            Texture2D playerWithBow = 
+            
+
+
+
         }
 
-    }
+        public void sword()
+        {
 
+
+
+        }
+
+
+
+
+
+
+
+
+    }    
 }
 
