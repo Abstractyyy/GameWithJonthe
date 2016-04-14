@@ -58,11 +58,12 @@ namespace GameWithJonthe
         
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            
             
 
             KeyboardState pressedKeys = Keyboard.GetState();
+
+
 
             Vector2 playerPostition = player.update(pressedKeys);
             monster.update(playerPostition);
