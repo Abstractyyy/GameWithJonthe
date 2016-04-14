@@ -14,7 +14,7 @@ namespace GameWithJonthe
         //Properties
         private Texture2D spriteSheet;
         private Rectangle sourceRectangle, hitbox, wholeScreen;
-        private Vector2 position, velocity, PlayerPosition;
+        public Vector2 position, velocity, PlayerPosition;
         
         
         
@@ -200,4 +200,6 @@ namespace GameWithJonthe
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
         }
     }
+
+   
 }

@@ -1,4 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -12,7 +16,12 @@ namespace GameWithJonthe
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
+
         Texture2D playerTexture;
+
+        Texture2D arrowTexture;
+
+        List<Projektiler> projektilen;
 
         Player player;
 
@@ -27,9 +36,6 @@ namespace GameWithJonthe
         
         protected override void Initialize()
         {
-            
-
-
 
             base.Initialize();
         }
@@ -40,9 +46,15 @@ namespace GameWithJonthe
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
 
+            projektilen = new List<Projektiler>();
+
+            for (int i = 0; i < projektilen.Count; i++)
+            {
+                arrowTexture = projektilen[i].arrowSprite = Content.Load<Texture2D>("LinkArrow");//Loads the texture for each LinkArrow   
+            }
+
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
-
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -62,10 +74,14 @@ namespace GameWithJonthe
                 Exit();
             
 
+
             KeyboardState pressedKeys = Keyboard.GetState();
+
+            
 
             Vector2 playerPostition = player.update(pressedKeys);
             monster.update(playerPostition);
+            
 
             base.Update(gameTime);
         }
@@ -79,6 +95,10 @@ namespace GameWithJonthe
             monster.draw(gameTime, spriteBatch);
              player.draw(gameTime, spriteBatch);
 
+            foreach (Projektiler projektilen in projektilen)
+            {
+                spriteBatch.Draw(projektilen.arrowSprite, monster.position , Color.White);
+            }
 
             spriteBatch.End();
             base.Draw(gameTime);
