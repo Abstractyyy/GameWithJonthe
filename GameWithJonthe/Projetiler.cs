@@ -61,7 +61,7 @@ namespace GameWithJonthe
             }
             if (pressedKeys.IsKeyDown(Keys.Left))
             {
-                velocity.Y = 0;
+                velocity.Y = -0;
                 velocity.X = -1;
                 sourceRectangle.X = 30;
             }
