@@ -10,11 +10,17 @@ namespace GameWithJonthe
 {
     class Player
     {
+        Game1 game1;
+        Player player;
         PlayerAttack playerAttack;
 
         Vector2 position;
         Vector2 velocity;
         Vector2 agilityAccel;
+
+        string thisType;
+        string type;
+        
 
 
         Rectangle sourceRectangle;
@@ -25,10 +31,10 @@ namespace GameWithJonthe
         float Agility;
         int Mana;
               
-        const int walkUp = 512;
-        const int walkDown = 640;
-        const int walkLeft = 576;
-        const int walkRight = 704;
+      public  const int walkUp = 512;
+      public  const int walkDown = 640;
+      public  const int walkLeft = 576;
+      public  const int walkRight = 704;
         const int walkAnimationWidth = 8;
         const int playerHitbox = 64;
         const int animationSpeed = 40;
@@ -49,6 +55,9 @@ namespace GameWithJonthe
             position = new Vector2(50, 50);
             velocity = new Vector2(0, 0);
             sourceRectangle = new Rectangle(0, 0, 64, 64);
+
+            thisType = "bow";
+
         }
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -59,9 +68,9 @@ namespace GameWithJonthe
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
 
-            //movement animation
-            #region
-            //movement animation
+
+            #region movement animation
+            
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
                 sourceRectangle.Y = walkUp;
@@ -163,9 +172,10 @@ namespace GameWithJonthe
     {
             velocity.Y = 2;
             velocity.X = 2;
-            
-        // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
-        if (pressedKeys.IsKeyDown(Keys.W))
+
+            #region movement
+            // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
+            if (pressedKeys.IsKeyDown(Keys.W))
         {
                 position.Y = position.Y -= velocity.Y;
         }
@@ -189,9 +199,30 @@ namespace GameWithJonthe
         }
         velocity.X = 0;
         velocity.Y = 0;
-         
-       
-            
+            #endregion
+
+            #region ChangeWeaponAndKillThisInstance
+            if (pressedKeys.Equals(Keys.D1)|| pressedKeys.Equals(Keys.D2)|| pressedKeys.Equals(Keys.D3))
+            {
+                if (pressedKeys.Equals(Keys.D1))
+                {
+                    type = "bow";
+                }
+               else if (pressedKeys.Equals(Keys.D2))
+                {
+                    type = "sword";
+                }
+               else if (pressedKeys.Equals(Keys.D3))
+                {
+                    type = "staff";
+                }
+                game1.changeWeapon(type, thisType);
+
+                player = null;
+                
+            }
+            #endregion
+
             return position;
     }
 
@@ -209,20 +240,9 @@ namespace GameWithJonthe
 
         double elapsed = 0;
 
-        public void bow(int lastDirection )
-        {
-            
+        
 
-
-
-        }
-
-        public void sword()
-        {
-
-
-
-        }
+        
 
 
 

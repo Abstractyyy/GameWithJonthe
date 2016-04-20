@@ -14,6 +14,7 @@ namespace GameWithJonthe
         public Vector2 position, velocity;
         public Texture2D arrowSprite;
         Rectangle projektil;
+        KeyboardState pressedKeys = Keyboard.GetState();
 
         public Rectangle TheArrow
         {
@@ -36,16 +37,7 @@ namespace GameWithJonthe
 
         public void update()
         {
-            if (pressedKeys.IsKeyDown(Keys.Up))
-            {
-                Projektiler projectiler = new Projektiler(50, 50);
-                projektilen.Add(projectiler);
-                foreach (Projektiler projektilen in projektilen)
-                {
-                    projectiler.velocity.Y = -2;
-                    projektilen.update();
-                }
-            }
+            
 
             position += velocity;
         }

@@ -18,14 +18,20 @@ namespace GameWithJonthe
         Texture2D monsterTexture;
 
         Texture2D playerTexture;
+        Texture2D playerWithSwordTexture;
+        Texture2D playerWithStaffTexture;
 
         Texture2D arrowTexture;
 
         List<Projektiler> projektilen;
 
         Player player;
+        PlayerWithSword playerWithSword;
+        PlayerWithStaff playerWithStaff;
 
         Monster monster;
+
+        
 
         public Game1()
         {
@@ -45,6 +51,8 @@ namespace GameWithJonthe
         {
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
+            playerWithSwordTexture = Content.Load<Texture2D>("playerWithSword");
+            playerWithStaffTexture = Content.Load<Texture2D>("playerWithStaff");
 
             projektilen = new List<Projektiler>();
 
@@ -79,6 +87,9 @@ namespace GameWithJonthe
 
 
             Vector2 playerPostition = player.update(pressedKeys);
+            playerPostition = playerWithSword.update(pressedKeys);
+
+            
             monster.update(playerPostition);
             
 
@@ -92,7 +103,9 @@ namespace GameWithJonthe
             spriteBatch.Begin();
             
             monster.draw(gameTime, spriteBatch);
-             player.draw(gameTime, spriteBatch);
+            player.draw(gameTime, spriteBatch);
+
+            
 
             foreach (Projektiler projektilen in projektilen)
             {
@@ -101,6 +114,21 @@ namespace GameWithJonthe
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void changeWeapon(string type,string callerType)
+        {
+             
+
+            if (type == callerType)
+                return;
+
+            if (type == "bow")
+                player = new Player(playerTexture);
+            else if (type == "sword")
+                player = new PlayerWithSword(playerWithSwordTexture);
+               
+            
         }
     }
 }
