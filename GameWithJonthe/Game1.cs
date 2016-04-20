@@ -19,7 +19,7 @@ namespace GameWithJonthe
 
         Texture2D playerTexture;
         Texture2D playerWithSwordTexture;
-        Texture2D playerWithStaffTexture;
+        Texture2D playerWithWandTexture;
 
         Texture2D arrowTexture;
 
@@ -27,7 +27,7 @@ namespace GameWithJonthe
 
         Player player;
         PlayerWithSword playerWithSword;
-        PlayerWithStaff playerWithStaff;
+        PlayerWithWand playerWithWand;
 
         Monster monster;
 
@@ -52,7 +52,7 @@ namespace GameWithJonthe
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
             playerWithSwordTexture = Content.Load<Texture2D>("playerWithSword");
-            playerWithStaffTexture = Content.Load<Texture2D>("playerWithStaff");
+            playerWithWandTexture = Content.Load<Texture2D>("playerWithWand");
 
             projektilen = new List<Projektiler>();
 
@@ -61,10 +61,10 @@ namespace GameWithJonthe
                 arrowTexture = projektilen[i].arrowSprite = Content.Load<Texture2D>("LinkArrow");//Loads the texture for each LinkArrow   
             }
 
-            monster = new Monster(monsterTexture);
-            player  = new Player(playerTexture);
+            monster = new Monster(monsterTexture);      //skapar monster
+            player  = new Player(playerTexture);        //skapa spelaren
 
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);  
 
             
         }
@@ -87,7 +87,7 @@ namespace GameWithJonthe
 
 
             Vector2 playerPostition = player.update(pressedKeys);
-            playerPostition = playerWithSword.update(pressedKeys);
+          //  playerPostition = playerWithSword.update(pressedKeys);
 
             
             monster.update(playerPostition);
