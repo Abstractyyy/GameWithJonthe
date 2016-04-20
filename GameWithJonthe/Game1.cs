@@ -16,7 +16,7 @@ namespace GameWithJonthe
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
-        
+        //SUG KUK HORJÄVEL
         Texture2D playerTexture;
 
         Texture2D arrowTexture;
