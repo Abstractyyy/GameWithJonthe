@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameWithJonthe
 {
-    class Projektiler
+    class Projektil
     {
         private Texture2D spriteSheet;
         public Vector2 position, velocity;
@@ -29,10 +29,10 @@ namespace GameWithJonthe
             }
         }
 
-        public Projektiler(Texture2D arrowTexture)
+        public Projektil(Texture2D arrowTexture, Vector2 position)
         {
-            position = new Vector2(50, 500);
-            velocity = new Vector2(0, 2);
+            this.position = new Vector2(position.X, position.Y);
+            velocity = new Vector2(0, 0);
             projektil = new Rectangle();
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
             spriteSheet = arrowTexture;

@@ -16,12 +16,12 @@ namespace GameWithJonthe
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
-        //SUG KUK HORJÄVEL
+       
         Texture2D playerTexture;
 
         Texture2D arrowTexture;
 
-        Projektiler projektiler;
+        List<Projektil> projektiler;
 
         Rectangle playerHitbox;
 
@@ -51,7 +51,8 @@ namespace GameWithJonthe
 
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
-            projektiler = new Projektiler(arrowTexture);
+
+            projektiler.Add(new Projektil(arrowTexture, monster.position));
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -78,7 +79,11 @@ namespace GameWithJonthe
 
             Vector2 playerPostition = player.update(pressedKeys);
             monster.update(playerPostition);
-            projektiler.update(playerHitbox);
+            foreach (Projektil item in projektiler)
+            {
+                item.update(playerHitbox);
+            }
+            
 
             base.Update(gameTime);
         }
@@ -91,6 +96,7 @@ namespace GameWithJonthe
             
             monster.draw(gameTime, spriteBatch);
              player.draw(gameTime, spriteBatch);
+            foreach
             projektiler.draw(gameTime, spriteBatch);
 
             spriteBatch.End();
