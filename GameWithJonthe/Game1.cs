@@ -21,7 +21,9 @@ namespace GameWithJonthe
 
         Texture2D arrowTexture;
 
-        List<Projektiler> projektilen;
+        Projektiler projektiler;
+
+        Rectangle playerHitbox;
 
         Player player;
 
@@ -45,16 +47,11 @@ namespace GameWithJonthe
         {
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
-
-            projektilen = new List<Projektiler>();
-
-            for (int i = 0; i < projektilen.Count; i++)
-            {
-                arrowTexture = projektilen[i].arrowSprite = Content.Load<Texture2D>("LinkArrow");//Loads the texture for each LinkArrow   
-            }
+            arrowTexture = Content.Load<Texture2D>("Arrow");
 
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
+            projektiler = new Projektiler(arrowTexture);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -64,7 +61,7 @@ namespace GameWithJonthe
         
         protected override void UnloadContent()
         {
-            
+               
         }
 
         
@@ -81,7 +78,7 @@ namespace GameWithJonthe
 
             Vector2 playerPostition = player.update(pressedKeys);
             monster.update(playerPostition);
-            
+            projektiler.update(playerHitbox);
 
             base.Update(gameTime);
         }
@@ -94,11 +91,7 @@ namespace GameWithJonthe
             
             monster.draw(gameTime, spriteBatch);
              player.draw(gameTime, spriteBatch);
-
-            foreach (Projektiler projektilen in projektilen)
-            {
-                spriteBatch.Draw(projektilen.arrowSprite, monster.position , Color.White);
-            }
+            projektiler.draw(gameTime, spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

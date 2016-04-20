@@ -17,7 +17,7 @@ namespace GameWithJonthe
         Vector2 agilityAccel;
 
 
-        Rectangle sourceRectangle;
+        Rectangle sourceRectangle, hitbox;
 
         Texture2D spriteSheet;
 
@@ -35,8 +35,17 @@ namespace GameWithJonthe
 
         int lastDirection;
 
-
-
+        public Rectangle Hitbox
+        {
+            get
+            {
+                hitbox.X = (int)position.X;
+                hitbox.Y = (int)position.Y;
+                hitbox.Width = spriteSheet.Width;
+                hitbox.Height = spriteSheet.Height;
+                return hitbox;
+            }
+        }
 
 
         double elapsed = 0;
@@ -44,8 +53,7 @@ namespace GameWithJonthe
         public Player(Texture2D playerTexture)
         {
             spriteSheet = playerTexture;
-
-
+            hitbox = new Rectangle();
             position = new Vector2(50, 50);
             velocity = new Vector2(0, 0);
             sourceRectangle = new Rectangle(0, 0, 64, 64);
@@ -60,7 +68,7 @@ namespace GameWithJonthe
 
 
             //movement animation
-            #region
+            #region movement animation
             //movement animation
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
@@ -69,7 +77,6 @@ namespace GameWithJonthe
                 #region
 
                 //  sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
-
 
                 if (elapsed > animationSpeed)    //the animation speed
                 {
@@ -153,11 +160,6 @@ namespace GameWithJonthe
             //draws the character
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White); //draws the player sprite whith white background
         }  // Gå animeringen hos spelaren
-
-
-
-
-    
 
     public Vector2 update(KeyboardState pressedKeys)
     {

@@ -12,8 +12,10 @@ namespace GameWithJonthe
     {
         private Texture2D spriteSheet;
         public Vector2 position, velocity;
-        public Texture2D arrowSprite;
-        Rectangle projektil;
+        int WaH = 30;
+        int test = 10;
+
+        Rectangle projektil, sourceRectangle;
 
         public Rectangle TheArrow
         {
@@ -21,33 +23,63 @@ namespace GameWithJonthe
             {
                 projektil.X = (int)position.X;
                 projektil.Y = (int)position.Y;
-                projektil.Width = arrowSprite.Width;
-                projektil.Height = arrowSprite.Height;
+                projektil.Width = spriteSheet.Width;
+                projektil.Height = spriteSheet.Height;
                 return projektil;
             }
         }
 
-        public Projektiler(float velocityX, float velocityY)
+        public Projektiler(Texture2D arrowTexture)
         {
-            position = new Vector2(position.X, position.Y);
+            position = new Vector2(50, 500);
             velocity = new Vector2(0, 2);
             projektil = new Rectangle();
+            sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
+            spriteSheet = arrowTexture;
         }
 
-        public void update()
+        public void update(Rectangle playerHitbox)
         {
+           
+            position += velocity;
+            if (playerHitbox.Intersects(projektil))
+            {
+                test = 0;
+                
+            }
+        }
+
+        public void draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            KeyboardState pressedKeys = Keyboard.GetState();
+
+            if (pressedKeys.IsKeyDown(Keys.Right))
+            {
+                velocity.Y = 0;
+                velocity.X = 1;
+                sourceRectangle.X = 60;
+            }
+            if (pressedKeys.IsKeyDown(Keys.Left))
+            {
+                velocity.Y = 0;
+                velocity.X = -1;
+                sourceRectangle.X = 30;
+            }
             if (pressedKeys.IsKeyDown(Keys.Up))
             {
-                Projektiler projectiler = new Projektiler(50, 50);
-                projektilen.Add(projectiler);
-                foreach (Projektiler projektilen in projektilen)
-                {
-                    projectiler.velocity.Y = -2;
-                    projektilen.update();
-                }
+                velocity.Y = -1;
+                velocity.X = 0;
+                sourceRectangle.X = 0;
+            }
+            if (pressedKeys.IsKeyDown(Keys.Down))
+            {
+                velocity.Y = 1;
+                velocity.X = 0;
+                sourceRectangle.X = 90;
             }
 
-            position += velocity;
+
+            spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
         }
     }
 }
