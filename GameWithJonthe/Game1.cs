@@ -126,7 +126,7 @@ namespace GameWithJonthe
             if (type == "bow")
                 player = new Player(playerTexture);
             else if (type == "sword")
-                player = new PlayerWithSword(playerWithSwordTexture);
+                playerWithSword = new PlayerWithSword(playerWithSwordTexture);
                
             
         }

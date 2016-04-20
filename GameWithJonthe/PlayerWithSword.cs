@@ -15,5 +15,13 @@ namespace GameWithJonthe
         {
             
         }
+        public Vector2 update(KeyboardState pressedKeys)
+        {
+            Vector2 position;
+            position.X = 50;
+            position.Y = 50;
+
+            return position;
+        }
     }
 }
