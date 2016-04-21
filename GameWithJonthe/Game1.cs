@@ -23,7 +23,9 @@ namespace GameWithJonthe
 
         Texture2D arrowTexture;
 
-        List<Projektiler> projektilen;
+        List<Projektil> projektiler;
+
+        Rectangle playerHitbox;
 
         Player player;
         PlayerWithSword playerWithSword;
@@ -32,6 +34,8 @@ namespace GameWithJonthe
         Monster monster;
 
         
+
+
 
         public Game1()
         {
@@ -51,20 +55,17 @@ namespace GameWithJonthe
         {
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
-            playerWithSwordTexture = Content.Load<Texture2D>("playerWithSword");
-            playerWithWandTexture = Content.Load<Texture2D>("playerWithWand");
 
-            projektilen = new List<Projektiler>();
+            monster = new Monster(monsterTexture);
+            player  = new Player(playerTexture);
+            projektiler = new List<Projektil>();
 
-            for (int i = 0; i < projektilen.Count; i++)
+            foreach (Projektil item in projektiler)
             {
-                arrowTexture = projektilen[i].arrowSprite = Content.Load<Texture2D>("LinkArrow");//Loads the texture for each LinkArrow   
+                arrowTexture = Content.Load<Texture2D>("Arrow");
             }
 
-            monster = new Monster(monsterTexture);      //skapar monster
-            player  = new Player(playerTexture);        //skapa spelaren
-
-            spriteBatch = new SpriteBatch(GraphicsDevice);  
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
             
         }
@@ -78,21 +79,20 @@ namespace GameWithJonthe
         
         protected override void Update(GameTime gameTime)
         {
-            
-            
-
 
             KeyboardState pressedKeys = Keyboard.GetState();
 
-
-
             Vector2 playerPostition = player.update(pressedKeys);
-          //  playerPostition = playerWithSword.update(pressedKeys);
-
-            
+            //  playerPostition = playerWithSword.update(pressedKeys);
+ 
             monster.update(playerPostition);
-            
 
+            //uppdaterar varje pil så att de känner av player hitbox
+            foreach (Projektil item in projektiler)
+            {
+                item.update(playerHitbox);
+            }
+            
             base.Update(gameTime);
         }
 
@@ -105,12 +105,12 @@ namespace GameWithJonthe
             monster.draw(gameTime, spriteBatch);
             player.draw(gameTime, spriteBatch);
 
-            
-
-            foreach (Projektiler projektilen in projektilen)
+            //Ritar ut texturen för varje pil
+            foreach (Projektil item in projektiler)
             {
-                spriteBatch.Draw(projektilen.arrowSprite, monster.position , Color.White);
+                item.draw(gameTime, spriteBatch);
             }
+
 
             spriteBatch.End();
             base.Draw(gameTime);

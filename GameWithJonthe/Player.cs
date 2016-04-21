@@ -20,11 +20,9 @@ namespace GameWithJonthe
 
         string thisType;
         string type;
-        
 
 
-        Rectangle sourceRectangle;
-
+        Rectangle sourceRectangle, hitbox;
         Texture2D spriteSheet;
 
         int HP;
@@ -41,8 +39,17 @@ namespace GameWithJonthe
 
         int lastDirection;
 
-
-
+        public Rectangle Hitbox
+        {
+            get
+            {
+                hitbox.X = (int)position.X;
+                hitbox.Y = (int)position.Y;
+                hitbox.Width = spriteSheet.Width;
+                hitbox.Height = spriteSheet.Height;
+                return hitbox;
+            }
+        }
 
 
         double elapsed = 0;
@@ -50,8 +57,7 @@ namespace GameWithJonthe
         public Player(Texture2D playerTexture)
         {
             spriteSheet = playerTexture;
-
-
+            hitbox = new Rectangle();
             position = new Vector2(50, 50);
             velocity = new Vector2(0, 0);
             sourceRectangle = new Rectangle(0, 0, 64, 64);
@@ -70,7 +76,10 @@ namespace GameWithJonthe
 
 
             #region movement animation
-            
+
+            //movement animation
+            #region
+            //movement animation
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
                 sourceRectangle.Y = walkUp;
@@ -78,7 +87,6 @@ namespace GameWithJonthe
                 #region
 
                 //  sourceRectangle.X += playerHitbox; // moves the animation forward (the source point)
-
 
                 if (elapsed > animationSpeed)    //the animation speed
                 {
@@ -163,19 +171,14 @@ namespace GameWithJonthe
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White); //draws the player sprite whith white background
         }  // Gå animeringen hos spelaren
 
-
-
-
-    
-
     public Vector2 update(KeyboardState pressedKeys)
     {
             velocity.Y = 2;
             velocity.X = 2;
-
+            
             #region movement
-            // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
-            if (pressedKeys.IsKeyDown(Keys.W))
+        // om w och eller a,d är nertryck kan man gå snett. Kan springa max agility velocity. agilityAccel är hur snabbt man kan springa till max hastigheten agility
+        if (pressedKeys.IsKeyDown(Keys.W))
         {
                 position.Y = position.Y -= velocity.Y;
         }
@@ -217,12 +220,12 @@ namespace GameWithJonthe
                     type = "staff";
                 }
                 game1.changeWeapon(type, thisType);
-
+         
                 player = null;
-                
+       
             }
             #endregion
-
+            
             return position;
     }
 
@@ -240,9 +243,9 @@ namespace GameWithJonthe
 
         double elapsed = 0;
 
-        
 
-        
+
+
 
 
 
@@ -254,3 +257,4 @@ namespace GameWithJonthe
     }    
 }
 
+#endregion

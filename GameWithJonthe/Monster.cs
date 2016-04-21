@@ -13,7 +13,7 @@ namespace GameWithJonthe
     {
         //Properties
         private Texture2D spriteSheet;
-        private Rectangle sourceRectangle, hitbox, wholeScreen;
+        public Rectangle sourceRectangle, hitbox, wholeScreen;
         public Vector2 position, velocity, PlayerPosition;
         
         
@@ -49,9 +49,7 @@ namespace GameWithJonthe
             wholeScreen = new Rectangle(0, 0, 500, 500);
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
         }
-
-
-
+        //SUG KUK
         public void update(Vector2 playerPosition)
         {
             PlayerPosition = playerPosition;

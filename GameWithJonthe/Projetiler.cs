@@ -8,13 +8,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace GameWithJonthe
 {
-    class Projektiler
+    class Projektil
     {
         private Texture2D spriteSheet;
         public Vector2 position, velocity;
         public Texture2D arrowSprite;
-        Rectangle projektil;
-        KeyboardState pressedKeys = Keyboard.GetState();
+
+        const int WaH = 30;
+
+        public Rectangle projektil, sourceRectangle;
 
         public Rectangle TheArrow
         {
@@ -22,24 +24,39 @@ namespace GameWithJonthe
             {
                 projektil.X = (int)position.X;
                 projektil.Y = (int)position.Y;
-                projektil.Width = arrowSprite.Width;
-                projektil.Height = arrowSprite.Height;
+                projektil.Width = spriteSheet.Width;
+                projektil.Height = spriteSheet.Height;
                 return projektil;
             }
         }
 
-        public Projektiler(float velocityX, float velocityY)
+        public Projektil(Texture2D arrowTexture, Vector2 position)
         {
-            position = new Vector2(position.X, position.Y);
-            velocity = new Vector2(0, 2);
+            this.position = new Vector2(position.X, position.Y);
+            velocity = new Vector2(0, 0);
             projektil = new Rectangle();
+            sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
+            arrowSprite = arrowTexture;
         }
 
-        public void update()
+        public void update(Rectangle playerHitbox)
         {
-            
 
             position += velocity;
         }
+
+        public void draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            KeyboardState pressedKeys = Keyboard.GetState();
+
+            if(pressedKeys.IsKeyDown(Keys.Up))
+            {
+                sourceRectangle.X = 0;
+                sourceRectangle.Y = 0;
+            }
+
+            spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
+         }
     }
 }
+
