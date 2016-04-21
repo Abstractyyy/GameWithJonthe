@@ -12,11 +12,10 @@ namespace GameWithJonthe
     {
         private Texture2D spriteSheet;
         public Vector2 position, velocity;
-        public Texture2D arrowSprite;
+        int WaH = 30;
+        int test = 10;
 
-        const int WaH = 30;
-
-        public Rectangle projektil, sourceRectangle;
+        Rectangle projektil, sourceRectangle;
 
         public Rectangle TheArrow
         {
@@ -36,27 +35,51 @@ namespace GameWithJonthe
             velocity = new Vector2(0, 0);
             projektil = new Rectangle();
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
-            arrowSprite = arrowTexture;
+            spriteSheet = arrowTexture;
         }
 
         public void update(Rectangle playerHitbox)
         {
 
             position += velocity;
+            if (playerHitbox.Intersects(projektil))
+            {
+                test = 0;
+
+            }
         }
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             KeyboardState pressedKeys = Keyboard.GetState();
 
-            if(pressedKeys.IsKeyDown(Keys.Up))
+            if (pressedKeys.IsKeyDown(Keys.Right))
             {
+                velocity.Y = 0;
+                velocity.X = 1;
+                sourceRectangle.X = 60;
+            }
+            if (pressedKeys.IsKeyDown(Keys.Left))
+            {
+                velocity.Y = -0;
+                velocity.X = -1;
+                sourceRectangle.X = 30;
+            }
+            if (pressedKeys.IsKeyDown(Keys.Up))
+            {
+                velocity.Y = -1;
+                velocity.X = 0;
                 sourceRectangle.X = 0;
-                sourceRectangle.Y = 0;
+            }
+            if (pressedKeys.IsKeyDown(Keys.Down))
+            {
+                velocity.Y = 1;
+                velocity.X = 0;
+                sourceRectangle.X = 90;
             }
 
+
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
-         }
+        }
     }
 }
-

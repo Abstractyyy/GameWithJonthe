@@ -53,17 +53,17 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
+            
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
+            arrowTexture = Content.Load<Texture2D>("Arrow");
 
+
+            
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
-            projektiler = new List<Projektil>();
 
-            foreach (Projektil item in projektiler)
-            {
-                arrowTexture = Content.Load<Texture2D>("Arrow");
-            }
+            projektiler.Add(new Projektil(arrowTexture, monster.position));
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -92,7 +92,7 @@ namespace GameWithJonthe
             {
                 item.update(playerHitbox);
             }
-            
+
             base.Update(gameTime);
         }
 
@@ -110,7 +110,6 @@ namespace GameWithJonthe
             {
                 item.draw(gameTime, spriteBatch);
             }
-
 
             spriteBatch.End();
             base.Draw(gameTime);
