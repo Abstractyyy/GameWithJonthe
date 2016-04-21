@@ -52,6 +52,7 @@ namespace GameWithJonthe
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
 
+           
             projektiler.Add(new Projektil(arrowTexture, monster.position));
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -96,8 +97,11 @@ namespace GameWithJonthe
             
             monster.draw(gameTime, spriteBatch);
              player.draw(gameTime, spriteBatch);
-            foreach
-            projektiler.draw(gameTime, spriteBatch);
+            foreach(Projektil item in projektiler)
+            {
+                item.draw(gameTime, spriteBatch);
+            }
+            
 
             spriteBatch.End();
             base.Draw(gameTime);

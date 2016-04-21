@@ -49,7 +49,7 @@ namespace GameWithJonthe
             wholeScreen = new Rectangle(0, 0, 500, 500);
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
         }
-
+        //SUG KUK
         public void update(Vector2 playerPosition)
         {
             PlayerPosition = playerPosition;
