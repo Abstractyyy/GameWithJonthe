@@ -16,7 +16,7 @@ namespace GameWithJonthe
 
         const int WaH = 30;
 
-        Rectangle projektil, sourceRectangle;
+        public Rectangle projektil, sourceRectangle;
 
         public Rectangle TheArrow
         {
@@ -36,7 +36,7 @@ namespace GameWithJonthe
             velocity = new Vector2(0, 0);
             projektil = new Rectangle();
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
-            spriteSheet = arrowTexture;
+            arrowSprite = arrowTexture;
         }
 
         public void update(Rectangle playerHitbox)
@@ -51,11 +51,11 @@ namespace GameWithJonthe
 
             if(pressedKeys.IsKeyDown(Keys.Up))
             {
-               
+                sourceRectangle.X = 0;
+                sourceRectangle.Y = 0;
             }
 
-
-                spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
+            spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
          }
     }
 }

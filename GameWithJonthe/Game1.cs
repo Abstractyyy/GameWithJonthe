@@ -56,6 +56,12 @@ namespace GameWithJonthe
 
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
+            projektiler = new List<Projektil>();
+
+            foreach (Projektil item in projektiler)
+            {
+                arrowTexture = Content.Load<Texture2D>("Arrow");
+            }
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
