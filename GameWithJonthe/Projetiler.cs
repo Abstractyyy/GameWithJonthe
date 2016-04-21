@@ -40,12 +40,12 @@ namespace GameWithJonthe
 
         public void update(Rectangle playerHitbox)
         {
-           
+
             position += velocity;
             if (playerHitbox.Intersects(projektil))
             {
                 test = 0;
-                
+
             }
         }
 
@@ -54,20 +54,21 @@ namespace GameWithJonthe
             KeyboardState pressedKeys = Keyboard.GetState();
 
             if (pressedKeys.IsKeyDown(Keys.Right))
-        {
-            if (pressedKeys.IsKeyDown(Keys.Up))
             {
-                Projektiler projectiler = new Projektiler(50, 50);
-                projektilen.Add(projectiler);
-                foreach (Projektiler projektilen in projektilen)
+                if (pressedKeys.IsKeyDown(Keys.Up))
                 {
-                    projectiler.velocity.Y = -2;
-                    projektilen.update();
+                    Projektiler projectiler = new Projektiler(50, 50);
+                    projektilen.Add(projectiler);
+                    foreach (Projektiler projektilen in projektilen)
+                    {
+                        projectiler.velocity.Y = -2;
+                        projektilen.update();
+                    }
                 }
+
+
+                spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
             }
-
-
-            spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White);
         }
     }
 }
