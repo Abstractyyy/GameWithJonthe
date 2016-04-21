@@ -14,7 +14,8 @@ namespace GameWithJonthe
         public Vector2 position, velocity;
         public Texture2D arrowSprite;
 
-        Rectangle projektil;
+        const int WaH = 30;
+
         Rectangle projektil, sourceRectangle;
 
         public Rectangle TheArrow
@@ -42,11 +43,6 @@ namespace GameWithJonthe
         {
            
             position += velocity;
-            if (playerHitbox.Intersects(projektil))
-            {
-                test = 0;
-                
-            }
         }
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -57,9 +53,9 @@ namespace GameWithJonthe
         {
             if (pressedKeys.IsKeyDown(Keys.Up))
             {
-                Projektiler projectiler = new Projektiler(50, 50);
-                projektilen.Add(projectiler);
-                foreach (Projektiler projektilen in projektilen)
+                Projektil projectiler = new Projektil(50, 50);
+                projektil.Add(projectiler);
+                foreach (Projektil projektilen in projektil)
                 {
                     projectiler.velocity.Y = -2;
                     projektilen.update();
