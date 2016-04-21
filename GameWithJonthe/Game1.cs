@@ -106,7 +106,7 @@ namespace GameWithJonthe
             monster.draw(gameTime, spriteBatch);
              player.draw(gameTime, spriteBatch);
 
-            foreach (Projektiler projektilen in projektilen)
+            foreach (Projektil item in projektiler)
             {
                 item.draw(gameTime, spriteBatch);
             }
