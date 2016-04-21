@@ -16,8 +16,10 @@ namespace GameWithJonthe
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
-       
+
         Texture2D playerTexture;
+        Texture2D playerWithSwordTexture;
+        Texture2D playerWithWandTexture;
 
         Texture2D arrowTexture;
 
@@ -26,8 +28,12 @@ namespace GameWithJonthe
         Rectangle playerHitbox;
 
         Player player;
+        PlayerWithSword playerWithSword;
+        PlayerWithWand playerWithWand;
 
         Monster monster;
+
+        
 
         public Game1()
         {
@@ -47,13 +53,13 @@ namespace GameWithJonthe
         {
             monsterTexture = Content.Load<Texture2D>("Skelly");
             playerTexture =  Content.Load<Texture2D>("playerBow");
-            arrowTexture = Content.Load<Texture2D>("Arrow");
 
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
 
-           
-            projektiler.Add(new Projektil(arrowTexture, monster.position));
+
+            monster = new Monster(monsterTexture);
+            player = new Player(playerTexture);
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -63,15 +69,14 @@ namespace GameWithJonthe
         
         protected override void UnloadContent()
         {
-               
+            
         }
 
         
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
             
+
 
 
             KeyboardState pressedKeys = Keyboard.GetState();
@@ -79,6 +84,9 @@ namespace GameWithJonthe
             
 
             Vector2 playerPostition = player.update(pressedKeys);
+          //  playerPostition = playerWithSword.update(pressedKeys);
+
+            
             monster.update(playerPostition);
             foreach (Projektil item in projektiler)
             {
@@ -97,14 +105,30 @@ namespace GameWithJonthe
             
             monster.draw(gameTime, spriteBatch);
              player.draw(gameTime, spriteBatch);
-            foreach(Projektil item in projektiler)
+
+            foreach (Projektiler projektilen in projektilen)
             {
                 item.draw(gameTime, spriteBatch);
             }
-            
+
 
             spriteBatch.End();
             base.Draw(gameTime);
+        }
+
+        public void changeWeapon(string type,string callerType)
+        {
+             
+
+            if (type == callerType)
+                return;
+
+            if (type == "bow")
+                player = new Player(playerTexture);
+            else if (type == "sword")
+                playerWithSword = new PlayerWithSword(playerWithSwordTexture);
+               
+            
         }
     }
 }

@@ -12,9 +12,9 @@ namespace GameWithJonthe
     {
         private Texture2D spriteSheet;
         public Vector2 position, velocity;
-        int WaH = 30;
-        int test = 10;
+        public Texture2D arrowSprite;
 
+        Rectangle projektil;
         Rectangle projektil, sourceRectangle;
 
         public Rectangle TheArrow
@@ -54,28 +54,16 @@ namespace GameWithJonthe
             KeyboardState pressedKeys = Keyboard.GetState();
 
             if (pressedKeys.IsKeyDown(Keys.Right))
-            {
-                velocity.Y = 0;
-                velocity.X = 1;
-                sourceRectangle.X = 60;
-            }
-            if (pressedKeys.IsKeyDown(Keys.Left))
-            {
-                velocity.Y = -0;
-                velocity.X = -1;
-                sourceRectangle.X = 30;
-            }
+        {
             if (pressedKeys.IsKeyDown(Keys.Up))
             {
-                velocity.Y = -1;
-                velocity.X = 0;
-                sourceRectangle.X = 0;
-            }
-            if (pressedKeys.IsKeyDown(Keys.Down))
-            {
-                velocity.Y = 1;
-                velocity.X = 0;
-                sourceRectangle.X = 90;
+                Projektiler projectiler = new Projektiler(50, 50);
+                projektilen.Add(projectiler);
+                foreach (Projektiler projektilen in projektilen)
+                {
+                    projectiler.velocity.Y = -2;
+                    projektilen.update();
+                }
             }
 
 
