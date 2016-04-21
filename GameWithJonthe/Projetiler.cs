@@ -42,11 +42,6 @@ namespace GameWithJonthe
         {
 
             position += velocity;
-            if (playerHitbox.Intersects(projektil))
-            {
-                test = 0;
-
-            }
         }
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)

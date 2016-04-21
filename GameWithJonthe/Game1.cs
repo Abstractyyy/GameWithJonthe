@@ -62,6 +62,7 @@ namespace GameWithJonthe
             
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
+            projektiler = new List<Projektil>();
 
             projektiler.Add(new Projektil(arrowTexture, monster.position));
 
