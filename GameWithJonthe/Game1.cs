@@ -35,6 +35,8 @@ namespace GameWithJonthe
 
         
 
+
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
