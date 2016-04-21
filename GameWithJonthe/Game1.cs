@@ -59,10 +59,6 @@ namespace GameWithJonthe
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
 
-
-            monster = new Monster(monsterTexture);
-            player = new Player(playerTexture);
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             
@@ -77,25 +73,20 @@ namespace GameWithJonthe
         
         protected override void Update(GameTime gameTime)
         {
-            
-
-
 
             KeyboardState pressedKeys = Keyboard.GetState();
 
-            
-
             Vector2 playerPostition = player.update(pressedKeys);
-          //  playerPostition = playerWithSword.update(pressedKeys);
-
-            
+            //  playerPostition = playerWithSword.update(pressedKeys);
+ 
             monster.update(playerPostition);
+
+            //uppdaterar varje pil så att de känner av player hitbox
             foreach (Projektil item in projektiler)
             {
                 item.update(playerHitbox);
             }
             
-
             base.Update(gameTime);
         }
 
@@ -106,8 +97,9 @@ namespace GameWithJonthe
             spriteBatch.Begin();
             
             monster.draw(gameTime, spriteBatch);
-             player.draw(gameTime, spriteBatch);
+            player.draw(gameTime, spriteBatch);
 
+            //Ritar ut texturen för varje pil
             foreach (Projektil item in projektiler)
             {
                 item.draw(gameTime, spriteBatch);

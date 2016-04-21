@@ -22,7 +22,7 @@ namespace GameWithJonthe
         string type;
 
 
-        Rectangle sourceRectangle;
+        Rectangle sourceRectangle, hitbox;
         Texture2D spriteSheet;
 
         int HP;
@@ -257,3 +257,4 @@ namespace GameWithJonthe
     }    
 }
 
+#endregion
