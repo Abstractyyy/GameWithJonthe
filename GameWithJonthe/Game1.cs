@@ -58,6 +58,14 @@ namespace GameWithJonthe
 
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
+
+            List<Monster> lstmonster = new List<Monster>();
+
+            lstmonster.Add(monster);
+            
+            
+               
+          
             projektiler = new List<Projektil>();
 
             foreach (Projektil item in projektiler)
@@ -86,6 +94,10 @@ namespace GameWithJonthe
             //  playerPostition = playerWithSword.update(pressedKeys);
  
             monster.update(playerPostition);
+
+            if (pressedKeys.IsKeyDown(Keys.L)){
+                
+            }
 
             //uppdaterar varje pil så att de känner av player hitbox
             foreach (Projektil item in projektiler)

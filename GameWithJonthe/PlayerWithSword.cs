@@ -37,7 +37,21 @@ namespace GameWithJonthe
         const int playerHitbox = 64;
         const int animationSpeed = 40;
 
+        double elapsed = 0;
+
         int lastDirection;
+
+        public PlayerWithSword(Texture2D playerTexture)
+        {
+            spriteSheet = playerTexture;
+            hitbox = new Rectangle();
+            position = new Vector2(50, 50);
+            velocity = new Vector2(0, 0);
+            sourceRectangle = new Rectangle(0, 0, 64, 64);
+
+            thisType = "sword";
+
+        }
 
         public Rectangle Hitbox
         {
@@ -52,19 +66,9 @@ namespace GameWithJonthe
         }
 
 
-        double elapsed = 0;
+    
 
-        public PlayerWithSword(Texture2D playerTexture)
-        {
-            spriteSheet = playerTexture;
-            hitbox = new Rectangle();
-            position = new Vector2(50, 50);
-            velocity = new Vector2(0, 0);
-            sourceRectangle = new Rectangle(0, 0, 64, 64);
-
-            thisType = "bow";
-
-        }
+       
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -204,27 +208,7 @@ namespace GameWithJonthe
             velocity.Y = 0;
             #endregion
 
-            #region ChangeWeaponAndKillThisInstance
-            if (pressedKeys.Equals(Keys.D1) || pressedKeys.Equals(Keys.D2) || pressedKeys.Equals(Keys.D3))
-            {
-                if (pressedKeys.Equals(Keys.D1))
-                {
-                    type = "bow";
-                }
-                else if (pressedKeys.Equals(Keys.D2))
-                {
-                    type = "sword";
-                }
-                else if (pressedKeys.Equals(Keys.D3))
-                {
-                    type = "staff";
-                }
-                game1.changeWeapon(type, thisType);
-
-                player = null;
-
-            }
-            #endregion
+            
 
             return position;
         }
