@@ -23,9 +23,9 @@ namespace GameWithJonthe
 
 
         Rectangle sourceRectangle, hitbox;
-        Texture2D spriteSheet;
+        List<Texture2D> playerTexture;
 
-        int HP;
+        int HP = 50000;
         float Agility;
         int Mana;
               

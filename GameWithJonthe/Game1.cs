@@ -33,6 +33,8 @@ namespace GameWithJonthe
 
         Monster monster;
 
+     
+
         
 
 
@@ -59,9 +61,27 @@ namespace GameWithJonthe
             arrowTexture = Content.Load<Texture2D>("Arrow");
 
 
+
             
             monster = new Monster(monsterTexture);
             player  = new Player(playerTexture);
+
+            /*
+            List<Player> Players = new List<Player>(3);
+
+            Player player = new Player(playerTexture);
+            Players.Add(player);
+
+            Player playerSword = new Player(playerWithSwordTexture);
+            Players.Add(playerSword);
+
+            Player playerWand = new Player(playerWithWandTexture);
+            Players.Add(playerWand);
+            */
+
+
+            
+
             projektiler = new List<Projektil>();
 
 
@@ -124,19 +144,14 @@ namespace GameWithJonthe
             base.Draw(gameTime);
         }
 
-        public void changeWeapon(string type,string callerType)
-        {
-             
 
-            if (type == callerType)
-                return;
-
-            if (type == "bow")
-                player = new Player(playerTexture);
-            else if (type == "sword")
-                playerWithSword = new PlayerWithSword(playerWithSwordTexture);
-               
+        
+        
+        
             
-        }
+
+
+            
+        
     }
 }
