@@ -20,18 +20,30 @@ namespace GameWithJonthe
         Texture2D playerTexture;
         Texture2D playerWithSwordTexture;
         Texture2D playerWithWandTexture;
+        Texture2D playerWithSpearTexture;
+        Texture2D playerWithTreuddTexture;
+
+        List<Texture2D> playerTextures;
+        int playersIndex = 0;
 
         Texture2D arrowTexture;
 
         Rectangle playerHitbox;
 
         List<Projektil> projektiler;
+        
+
 
         Player player;
         PlayerWithSword playerWithSword;
         PlayerWithWand playerWithWand;
 
         Monster monster;
+
+        
+
+
+
 
         public Game1()
         {
@@ -49,21 +61,50 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
-            
+               
             monsterTexture = Content.Load<Texture2D>("Skelly");
-            playerTexture =  Content.Load<Texture2D>("playerBow");
+
+        playerTextures[0]     = Content.Load<Texture2D>("playerBow");                                  // playerTexture          
+        playerTextures[1]     = Content.Load<Texture2D>("playerWithSword");                             // playerWithSwordTexture 
+        playerTextures[2]     = Content.Load<Texture2D>("playerWithSpear");                             // playerWithSpearTexture 
+        playerTextures[3]     = Content.Load<Texture2D>("playerWithWand");                              // playerWithWandTexture  
+        playerTextures[4]     = Content.Load<Texture2D>("playerTreudd");                                // playerWithTreuddTexture
+                
             arrowTexture = Content.Load<Texture2D>("Arrow");
 
+           
+
+
+
+
+            monster = new Monster(monsterTexture);
+            player  = new Player(playerTextures);
 
             
-            monster = new Monster(monsterTexture);
-            player  = new Player(playerTexture);
+            /*
+            List<Player> Players = new List<Player>(3);
+
+            Player player = new Player(playerTexture);
+            Players.Add(player);
+
+            Player playerSword = new Player(playerWithSwordTexture);
+            Players.Add(playerSword);
+
+            Player playerWand = new Player(playerWithWandTexture);
+            Players.Add(playerWand);
+            */
+
+
+
+
             projektiler = new List<Projektil>();
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
-        }
+
+          
+
+    }
 
         
         protected override void UnloadContent()
@@ -118,19 +159,14 @@ namespace GameWithJonthe
             base.Draw(gameTime);
         }
 
-        public void changeWeapon(string type,string callerType)
-        {
-             
 
-            if (type == callerType)
-                return;
-
-            if (type == "bow")
-                player = new Player(playerTexture);
-            else if (type == "sword")
-                playerWithSword = new PlayerWithSword(playerWithSwordTexture);
-               
+        
+        
+        
             
-        }
+
+
+            
+        
     }
 }
