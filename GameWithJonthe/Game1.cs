@@ -40,10 +40,6 @@ namespace GameWithJonthe
 
         Monster monster;
 
-        
-
-
-
 
         public Game1()
         {
@@ -64,7 +60,7 @@ namespace GameWithJonthe
                
             monsterTexture = Content.Load<Texture2D>("Skelly");
 
-        playerTextures[0]     = Content.Load<Texture2D>("playerBow");                                  // playerTexture          
+        playerTextures[0]     = Content.Load<Texture2D>("playerBow");                                   // playerTexture          
         playerTextures[1]     = Content.Load<Texture2D>("playerWithSword");                             // playerWithSwordTexture 
         playerTextures[2]     = Content.Load<Texture2D>("playerWithSpear");                             // playerWithSpearTexture 
         playerTextures[3]     = Content.Load<Texture2D>("playerWithWand");                              // playerWithWandTexture  
@@ -101,8 +97,6 @@ namespace GameWithJonthe
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-          
 
     }
 
