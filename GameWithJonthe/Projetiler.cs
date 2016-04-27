@@ -13,9 +13,8 @@ namespace GameWithJonthe
         private Texture2D spriteSheet;
         public Vector2 position, velocity;
         int WaH = 30;
-        int test = 10;
 
-        Rectangle projektil, sourceRectangle;
+        public Rectangle projektil, sourceRectangle, PlayerHitbox;
 
         public Rectangle TheArrow
         {
@@ -23,8 +22,8 @@ namespace GameWithJonthe
             {
                 projektil.X = (int)position.X;
                 projektil.Y = (int)position.Y;
-                projektil.Width = spriteSheet.Width;
-                projektil.Height = spriteSheet.Height;
+                projektil.Width = sourceRectangle.Width;
+                projektil.Height =  sourceRectangle.Height;
                 return projektil;
             }
         }
@@ -40,6 +39,12 @@ namespace GameWithJonthe
 
         public void update(Rectangle playerHitbox)
         {
+            PlayerHitbox = playerHitbox;
+
+            if (TheArrow.Intersects(PlayerHitbox))
+            {
+                
+            }
 
             position += velocity;
         }

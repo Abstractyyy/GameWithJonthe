@@ -133,7 +133,7 @@ namespace GameWithJonthe
 
             #endregion
 
-            #region ShootingKeys
+            #region ShootingAnimation
             if (PlayerPosition.X - position.X <= 50 && PlayerPosition.X - position.X > 0 && PlayerPosition.Y - position.Y <= 100 && PlayerPosition.Y - position.Y >= -100) 
             {
                 
