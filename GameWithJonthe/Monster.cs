@@ -15,13 +15,13 @@ namespace GameWithJonthe
         private Texture2D spriteSheet;
         public Rectangle sourceRectangle, hitbox, wholeScreen;
         public Vector2 position, velocity, PlayerPosition;
-        
-        
-        
+
+        int test = 400;
         //Variables
         
         int HPmonster = 200;
         private double Elapsed = 0;
+        private double Elapsed2 = 0;
         
 
         #region Constants
@@ -49,7 +49,7 @@ namespace GameWithJonthe
             wholeScreen = new Rectangle(0, 0, 500, 500);
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
         }
-        //SUG KUK
+        
         public void update(Vector2 playerPosition)
         {
             PlayerPosition = playerPosition;
@@ -60,6 +60,7 @@ namespace GameWithJonthe
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+            Elapsed2 += gameTime.ElapsedGameTime.TotalMilliseconds;
             //Checks what key is pressed and sets sprite to match
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
@@ -134,12 +135,11 @@ namespace GameWithJonthe
             #endregion
 
             #region ShootingAnimation
-            if (PlayerPosition.X - position.X <= 50 && PlayerPosition.X - position.X > 0 && PlayerPosition.Y - position.Y <= 100 && PlayerPosition.Y - position.Y >= -100) 
+            if (PlayerPosition.X <- Math.Abs(position.X)) 
             {
-                
-                if (Elapsed > 50)
+                if (Elapsed2 > 200)
                 {
-                    Elapsed = 0;
+                    Elapsed2 = 0;
                     sourceRectangle.X += WaH;
                     if (sourceRectangle.X > 832-64)
                     {
@@ -148,10 +148,10 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootRight;
             }
-            if(PlayerPosition.X - position.X >= -50 && PlayerPosition.X - position.X < -0 && PlayerPosition.Y - position.Y <= 100 && PlayerPosition.Y - position.Y >= -100)
+            if(test == 300)
                 {
                
-                if (Elapsed > 50)
+                if (Elapsed > 200)
                 {
                     Elapsed = 0;
                     sourceRectangle.X += WaH;
@@ -162,10 +162,10 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootLeft;
             }
-            if (PlayerPosition.Y - position.Y >= -50 && PlayerPosition.Y - position.Y < -0 && PlayerPosition.X - position.X <= 100 && PlayerPosition.X - position.X >= -100)
+            if (test == 200)
                 {
                 
-                if (Elapsed > 50)
+                if (Elapsed > 200)
                 {
                     Elapsed = 0;
                     sourceRectangle.X += WaH;
@@ -176,10 +176,10 @@ namespace GameWithJonthe
                 }
                 sourceRectangle.Y = ShootUp;
                 }
-            if (PlayerPosition.Y - position.Y <= 50 && PlayerPosition.Y - position.Y > 0 && PlayerPosition.X - position.X <= 100 && PlayerPosition.X - position.X >= -100)
+            if (test == 100)
             {
                 
-                if (Elapsed > 50)
+                if (Elapsed > 200)
                 {
                     Elapsed = 0;
                     sourceRectangle.X += WaH;

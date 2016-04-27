@@ -16,6 +16,7 @@ namespace GameWithJonthe
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
+        Texture2D Ee;
 
         Texture2D playerTexture;
         Texture2D playerWithSwordTexture;
@@ -40,11 +41,9 @@ namespace GameWithJonthe
 
         Monster monster;
 
+        bool EE = false;
+
         
-
-
-
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -80,7 +79,7 @@ namespace GameWithJonthe
             monster = new Monster(monsterTexture);
             player  = new Player(playerTextures);
 
-            
+
             /*
             List<Player> Players = new List<Player>(3);
 
@@ -94,15 +93,13 @@ namespace GameWithJonthe
             Players.Add(playerWand);
             */
 
-
+            Ee = Content.Load<Texture2D>("EE");
 
 
             projektiler = new List<Projektil>();
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-          
 
     }
 
@@ -124,7 +121,11 @@ namespace GameWithJonthe
             monster.update(playerPostition);
 
             playerHitbox = player.Hitbox;
-            
+
+            if (pressedKeys.IsKeyDown(Keys.E))
+                EE = true;
+            else
+                EE = false;
 
             //uppdaterar varje pil så att de känner av player hitbox
             foreach (Projektil projektil in projektiler)
@@ -143,6 +144,9 @@ namespace GameWithJonthe
         
         protected override void Draw(GameTime gameTime)
         {
+            KeyboardState pressedKeys = Keyboard.GetState();
+
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             
@@ -153,6 +157,11 @@ namespace GameWithJonthe
             foreach (Projektil item in projektiler)
             {
                 item.draw(gameTime, spriteBatch);
+            }
+
+            if (EE == true)
+            {
+                spriteBatch.Draw(Ee, Vector2.Zero, Color.White);
             }
 
             spriteBatch.End();
