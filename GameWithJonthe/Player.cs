@@ -43,7 +43,7 @@ namespace GameWithJonthe
 
         int lastDirection;
 
-        public Player(List<Texture2D> playerTexture)
+        public Player(Dictionary<string,Texture2D> playerTexture)
         {
             
             hitbox = new Rectangle();
@@ -51,7 +51,7 @@ namespace GameWithJonthe
             velocity = new Vector2(0, 0);
             sourceRectangle = new Rectangle(0, 0, 64, 64);
 
-            spriteSheet = playerTexture[0];
+            spriteSheet = playerTexture["playerTexture"];
 
             thisType = "bow";
 
