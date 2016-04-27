@@ -62,10 +62,10 @@ namespace GameWithJonthe
 
 
             playerTextures[0]     = Content.Load<Texture2D>("playerBow");                                  // playerTexture          
-            playerTextures[1]     = Content.Load<Texture2D>("playerWithSword");                             // playerWithSwordTexture 
-            playerTextures[2]     = Content.Load<Texture2D>("playerWithSpear");                             // playerWithSpearTexture 
-            playerTextures[3]     = Content.Load<Texture2D>("playerWithWand");                              // playerWithWandTexture  
-            playerTextures[4]     = Content.Load<Texture2D>("playerTreudd");                                // playerWithTreuddTexture
+        playerTextures[1]     = Content.Load<Texture2D>("playerWithSword");                             // playerWithSwordTexture 
+        playerTextures[2]     = Content.Load<Texture2D>("playerWithSpear");                             // playerWithSpearTexture 
+        playerTextures[3]     = Content.Load<Texture2D>("playerWithWand");                              // playerWithWandTexture  
+        playerTextures[4]     = Content.Load<Texture2D>("playerTreudd");                                // playerWithTreuddTexture
                 
             arrowTexture = Content.Load<Texture2D>("Arrow");
 
