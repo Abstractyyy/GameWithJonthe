@@ -22,7 +22,7 @@ namespace GameWithJonthe
         string type;
 
 
-        Rectangle sourceRectangle, hitbox;
+        public Rectangle sourceRectangle, hitbox;
         Texture2D spriteSheet;
 
         int HP;
@@ -45,8 +45,8 @@ namespace GameWithJonthe
             {
                 hitbox.X = (int)position.X;
                 hitbox.Y = (int)position.Y;
-                hitbox.Width = spriteSheet.Width;
-                hitbox.Height = spriteSheet.Height;
+                hitbox.Width = sourceRectangle.Width;
+                hitbox.Height = sourceRectangle.Height;
                 return hitbox;
             }
         }
@@ -228,6 +228,11 @@ namespace GameWithJonthe
             
             return position;
     }
+
+        public void update()
+        {
+            
+        }
 
 }
     class PlayerAttack

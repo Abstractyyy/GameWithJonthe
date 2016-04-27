@@ -23,19 +23,15 @@ namespace GameWithJonthe
 
         Texture2D arrowTexture;
 
-        List<Projektil> projektiler;
-
         Rectangle playerHitbox;
+
+        List<Projektil> projektiler;
 
         Player player;
         PlayerWithSword playerWithSword;
         PlayerWithWand playerWithWand;
 
         Monster monster;
-
-        
-
-
 
         public Game1()
         {
@@ -92,15 +88,15 @@ namespace GameWithJonthe
  
             monster.update(playerPostition);
 
-            if (pressedKeys.IsKeyDown(Keys.L)){
-                
-            }
+            playerHitbox = player.Hitbox;
+            
 
             //uppdaterar varje pil så att de känner av player hitbox
-            foreach (Projektil item in projektiler)
+            foreach (Projektil projektil in projektiler)
             {
-                item.update(playerHitbox);
+                projektil.update(playerHitbox);
             }
+            
 
             base.Update(gameTime);
         }
