@@ -60,12 +60,6 @@ namespace GameWithJonthe
             player  = new Player(playerTexture);
             projektiler = new List<Projektil>();
 
-
-
-            projektiler = new List<Projektil>();
-
-            projektiler.Add(new Projektil(arrowTexture, monster.position));
-
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             
@@ -96,7 +90,11 @@ namespace GameWithJonthe
             {
                 projektil.update(playerHitbox);
             }
-            
+
+            if (pressedKeys.IsKeyDown(Keys.L))
+            {
+                projektiler.Add(new Projektil(arrowTexture, monster.position));
+            }
 
             base.Update(gameTime);
         }
