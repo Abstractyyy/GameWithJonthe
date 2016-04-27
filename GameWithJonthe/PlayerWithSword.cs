@@ -12,7 +12,7 @@ namespace GameWithJonthe
     {
         Game1 game1;
         Player player;
-        PlayerAttack playerAttack;
+        
 
         Vector2 position;
         Vector2 velocity;

@@ -12,7 +12,7 @@ namespace GameWithJonthe
     {
         Game1 game1;
         Player player;
-        PlayerAttack playerAttack;
+        
 
         Vector2 position;
         Vector2 velocity;
@@ -85,11 +85,11 @@ namespace GameWithJonthe
 
 
 
-            #region movement animation
+            
 
-            //movement animation
-            #region
-            //movement animation
+          
+            #region Movement animation
+            
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
                 sourceRectangle.Y = walkUp;
@@ -172,6 +172,30 @@ namespace GameWithJonthe
             //end of movement
             #endregion
 
+            #region AttackMovement
+            if (pressedKeys.IsKeyDown(Keys.Space))
+            {
+                if (lastDirection == walkUp)
+                {
+                    sourceRectangle.Y = 1024;
+                }
+
+                if (lastDirection == walkDown)
+                {
+                    sourceRectangle.Y = 1152;
+                }
+
+                if (lastDirection == walkLeft)
+                {
+                    sourceRectangle.Y = 1088;
+                }
+
+                if (lastDirection == walkRight)
+                {
+                    sourceRectangle.Y = 1216;
+                }
+            }
+            #endregion
 
 
 
@@ -233,34 +257,11 @@ namespace GameWithJonthe
     }
     
     
+    
+    
 
-        
+       
 }
-    class PlayerAttack
-    {
-        const int walkUpBow    = 512;
-        const int walkDownBow  = 640;
-        const int walkLeftBow  = 576;
-        const int walkRightBow = 704;
-
-        Texture2D playerWithBow;
-        Texture2D playerWithSword;
-
-
-        double elapsed = 0;
-
-
-
-
-
-
-
-
-
-
-
-
-    }    
+    
 }
 
-#endregion
