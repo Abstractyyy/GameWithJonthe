@@ -20,12 +20,19 @@ namespace GameWithJonthe
         Texture2D playerTexture;
         Texture2D playerWithSwordTexture;
         Texture2D playerWithWandTexture;
+        Texture2D playerWithSpearTexture;
+        Texture2D playerWithTreuddTexture;
+
+        List<Texture2D> playerTextures;
+        int playersIndex = 0;
 
         Texture2D arrowTexture;
 
         Rectangle playerHitbox;
 
         List<Projektil> projektiler;
+        
+
 
         Player player;
         PlayerWithSword playerWithSword;
@@ -54,17 +61,26 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
-            
+               
             monsterTexture = Content.Load<Texture2D>("Skelly");
-            playerTexture =  Content.Load<Texture2D>("playerBow");
+
+        playerTextures[0]     = Content.Load<Texture2D>("playerBow");                                  // playerTexture          
+        playerTextures[1]     = Content.Load<Texture2D>("playerWithSword");                             // playerWithSwordTexture 
+        playerTextures[2]     = Content.Load<Texture2D>("playerWithSpear");                             // playerWithSpearTexture 
+        playerTextures[3]     = Content.Load<Texture2D>("playerWithWand");                              // playerWithWandTexture  
+        playerTextures[4]     = Content.Load<Texture2D>("playerTreudd");                                // playerWithTreuddTexture
+                
             arrowTexture = Content.Load<Texture2D>("Arrow");
 
+           
 
+
+
+
+            monster = new Monster(monsterTexture);
+            player  = new Player(playerTextures);
 
             
-            monster = new Monster(monsterTexture);
-            player  = new Player(playerTexture);
-
             /*
             List<Player> Players = new List<Player>(3);
 
@@ -79,7 +95,7 @@ namespace GameWithJonthe
             */
 
 
-            
+
 
             projektiler = new List<Projektil>();
 
@@ -91,8 +107,10 @@ namespace GameWithJonthe
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            
-        }
+
+          
+
+    }
 
         
         protected override void UnloadContent()

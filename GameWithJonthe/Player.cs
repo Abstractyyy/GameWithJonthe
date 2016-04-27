@@ -23,6 +23,10 @@ namespace GameWithJonthe
 
 
         public Rectangle sourceRectangle, hitbox;
+
+        List<Texture2D> playerTextures;
+        public int playersIndex = 0;
+
         Texture2D spriteSheet;
 
         int HP = 50000;
@@ -39,6 +43,20 @@ namespace GameWithJonthe
 
         int lastDirection;
 
+        public Player(List<Texture2D> playerTexture)
+        {
+            
+            hitbox = new Rectangle();
+            position = new Vector2(50, 50);
+            velocity = new Vector2(0, 0);
+            sourceRectangle = new Rectangle(0, 0, 64, 64);
+
+            spriteSheet = playerTexture[0];
+
+            thisType = "bow";
+
+        }
+
         public Rectangle Hitbox
         {
             get
@@ -54,17 +72,7 @@ namespace GameWithJonthe
 
         double elapsed = 0;
 
-        public Player(Texture2D playerTexture)
-        {
-            spriteSheet = playerTexture;
-            hitbox = new Rectangle();
-            position = new Vector2(50, 50);
-            velocity = new Vector2(0, 0);
-            sourceRectangle = new Rectangle(0, 0, 64, 64);
-
-            thisType = "bow";
-
-        }
+        
 
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
@@ -204,36 +212,27 @@ namespace GameWithJonthe
         velocity.Y = 0;
             #endregion
 
-            #region ChangeWeaponAndKillThisInstance
-            if (pressedKeys.Equals(Keys.D1)|| pressedKeys.Equals(Keys.D2)|| pressedKeys.Equals(Keys.D3))
+
+            if (pressedKeys.IsKeyDown(Keys.D1))
             {
-                if (pressedKeys.Equals(Keys.D1))
-                {
-                    type = "bow";
-                }
-               else if (pressedKeys.Equals(Keys.D2))
-                {
-                    type = "sword";
-                }
-               else if (pressedKeys.Equals(Keys.D3))
-                {
-                    type = "staff";
-                }
-                game1.changeWeapon(type, thisType);
-         
-                player = null;
-       
+                spriteSheet = playerTextures[0];
             }
-            #endregion
-            
+            if (pressedKeys.IsKeyDown(Keys.D2))
+            {
+                spriteSheet = playerTextures[1];
+            }
+            if (pressedKeys.IsKeyDown(Keys.D3))
+            {
+                spriteSheet = playerTextures[2];
+            }
+
+
             return position;
     }
+    
+    
 
-        public void update()
-        {
-            
-        }
-
+        
 }
     class PlayerAttack
     {
