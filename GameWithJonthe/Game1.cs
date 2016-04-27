@@ -23,7 +23,7 @@ namespace GameWithJonthe
         Texture2D playerWithSpearTexture;
         Texture2D playerWithTreuddTexture;
 
-        Dictionary<string,Texture2D> playerTextures;
+        Dictionary<string,Texture2D> playerTextures = new Dictionary<string, Texture2D>();
         int playersIndex = 0;
 
         Texture2D arrowTexture;
