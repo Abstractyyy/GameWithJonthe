@@ -53,7 +53,7 @@ namespace GameWithJonthe
             velocity = new Vector2(0, 0);
             sourceRectangle = new Rectangle(0, 0, 64, 64);
 
-            spriteSheet = playerTexture["playerTexture"];
+            spriteSheet = playerTexture["playerWithSwordTexture"];
 
             thisType = "bow";
 
@@ -177,22 +177,26 @@ namespace GameWithJonthe
             {
                 if (lastDirection == walkUp)
                 {
-                    sourceRectangle.Y = 1024;
+                    sourceRectangle.Y = 1344;   // tjockleck 192
+
                 }
 
                 if (lastDirection == walkDown)
                 {
-                    sourceRectangle.Y = 1152;
+                    sourceRectangle.Y = 1728;
+                    sourceRectangle.Width = 192;
+                    sourceRectangle.Height = 192;
                 }
 
                 if (lastDirection == walkLeft)
                 {
-                    sourceRectangle.Y = 1088;
+                    sourceRectangle.Y = 1536;
                 }
 
                 if (lastDirection == walkRight)
                 {
-                    sourceRectangle.Y = 1216;
+                    sourceRectangle.Y = 1920;
+
                 }
             }
             #endregion
@@ -243,7 +247,7 @@ namespace GameWithJonthe
             {
                 spriteSheet = playerTexture["playerTexture"];
             }
-            if (pressedKeys.IsKeyDown(Keys.D2))
+            if (pressedKeys.IsKeyDown(Keys.Q))
             {
                 spriteSheet = playerTexture["playerWithSwordTexture"];
             }
