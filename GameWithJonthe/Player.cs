@@ -24,7 +24,8 @@ namespace GameWithJonthe
 
         public Rectangle sourceRectangle, hitbox;
 
-        List<Texture2D> playerTextures;
+        Dictionary<string, Texture2D> playerTexture = new Dictionary<string, Texture2D>();
+
         public int playersIndex = 0;
 
         Texture2D spriteSheet;
@@ -43,15 +44,16 @@ namespace GameWithJonthe
 
         int lastDirection;
 
-        public Player(List<Texture2D> playerTexture)
+        public Player(Dictionary<string,Texture2D> playerTextureFromGame)
         {
-            
+            playerTexture = playerTextureFromGame;
+
             hitbox = new Rectangle();
             position = new Vector2(50, 50);
             velocity = new Vector2(0, 0);
             sourceRectangle = new Rectangle(0, 0, 64, 64);
 
-            spriteSheet = playerTexture[0];
+            spriteSheet = playerTexture["playerTexture"];
 
             thisType = "bow";
 
@@ -215,15 +217,15 @@ namespace GameWithJonthe
 
             if (pressedKeys.IsKeyDown(Keys.D1))
             {
-                spriteSheet = playerTextures[0];
+                spriteSheet = playerTexture["playerTexture"];
             }
             if (pressedKeys.IsKeyDown(Keys.D2))
             {
-                spriteSheet = playerTextures[1];
+                spriteSheet = playerTexture["playerWithSwordTexture"];
             }
             if (pressedKeys.IsKeyDown(Keys.D3))
             {
-                spriteSheet = playerTextures[2];
+                spriteSheet = playerTexture["playerWithSpearTexture"];
             }
 
 
