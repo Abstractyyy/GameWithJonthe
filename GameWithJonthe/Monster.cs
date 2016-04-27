@@ -21,6 +21,7 @@ namespace GameWithJonthe
         
         int HPmonster = 200;
         private double Elapsed = 0;
+        private double Elapsed2 = 0;
         
 
         #region Constants
@@ -59,6 +60,7 @@ namespace GameWithJonthe
         public void draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             Elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+            Elapsed2 += gameTime.ElapsedGameTime.TotalMilliseconds;
             //Checks what key is pressed and sets sprite to match
             #region Movement
             KeyboardState pressedKeys = Keyboard.GetState();
@@ -133,11 +135,11 @@ namespace GameWithJonthe
             #endregion
 
             #region ShootingAnimation
-            if (test == 400) 
+            if (PlayerPosition.X <- Math.Abs(position.X)) 
             {
-                if (Elapsed > 100)
+                if (Elapsed2 > 200)
                 {
-                    Elapsed = 0;
+                    Elapsed2 = 0;
                     sourceRectangle.X += WaH;
                     if (sourceRectangle.X > 832-64)
                     {
@@ -149,7 +151,7 @@ namespace GameWithJonthe
             if(test == 300)
                 {
                
-                if (Elapsed > 100)
+                if (Elapsed > 200)
                 {
                     Elapsed = 0;
                     sourceRectangle.X += WaH;
@@ -163,7 +165,7 @@ namespace GameWithJonthe
             if (test == 200)
                 {
                 
-                if (Elapsed > 100)
+                if (Elapsed > 200)
                 {
                     Elapsed = 0;
                     sourceRectangle.X += WaH;
@@ -177,7 +179,7 @@ namespace GameWithJonthe
             if (test == 100)
             {
                 
-                if (Elapsed > 100)
+                if (Elapsed > 200)
                 {
                     Elapsed = 0;
                     sourceRectangle.X += WaH;
