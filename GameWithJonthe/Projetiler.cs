@@ -31,7 +31,7 @@ namespace GameWithJonthe
         public Projektil(Texture2D arrowTexture, Vector2 position)
         {
             this.position = new Vector2(position.X, position.Y);
-            velocity = new Vector2(0, 2);
+            velocity = new Vector2(0, 0);
             projektil = new Rectangle();
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
             spriteSheet = arrowTexture;
