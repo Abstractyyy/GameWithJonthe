@@ -169,6 +169,8 @@ namespace GameWithJonthe
                 }
                 #endregion
             }
+            sourceRectangle.Width = 64;
+            sourceRectangle.Height = 64;
             //end of movement
             #endregion
 
@@ -198,6 +200,7 @@ namespace GameWithJonthe
                     sourceRectangle.Y = 1920;
 
                 }
+               
             }
             #endregion
 
