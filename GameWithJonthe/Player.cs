@@ -180,6 +180,8 @@ namespace GameWithJonthe
                 if (lastDirection == walkUp)
                 {
                     sourceRectangle.Y = 1344;   // tjockleck 192
+                    sourceRectangle.Width = 192;
+                    sourceRectangle.Height = 192;
 
                 }
 
@@ -193,11 +195,15 @@ namespace GameWithJonthe
                 if (lastDirection == walkLeft)
                 {
                     sourceRectangle.Y = 1536;
+                    sourceRectangle.Width = 192;
+                    sourceRectangle.Height = 192;
                 }
 
                 if (lastDirection == walkRight)
                 {
                     sourceRectangle.Y = 1920;
+                    sourceRectangle.Width = 192;
+                    sourceRectangle.Height = 192;
 
                 }
                
