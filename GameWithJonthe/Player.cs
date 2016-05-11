@@ -38,9 +38,9 @@ namespace GameWithJonthe
       public  const int walkDown = 640;
       public  const int walkLeft = 576;
       public  const int walkRight = 704;
-        const int walkAnimationWidth = 8;
-        const int playerHitbox = 64;
-        const int animationSpeed = 40;
+        int walkAnimationWidth = 8;
+        int playerHitbox = 64;
+        int animationSpeed = 40;
 
         int lastDirection;
 
@@ -89,7 +89,13 @@ namespace GameWithJonthe
 
           
             #region Movement animation
-            
+            if (pressedKeys.IsKeyDown(Keys.W)|| pressedKeys.IsKeyDown(Keys.A)|| pressedKeys.IsKeyDown(Keys.S)|| pressedKeys.IsKeyDown(Keys.D))
+            {
+             //   sourceRectangle.Width = 64;
+             //   sourceRectangle.Height = 64;
+
+            }
+
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
                 sourceRectangle.Y = walkUp;
@@ -169,41 +175,39 @@ namespace GameWithJonthe
                 }
                 #endregion
             }
-            sourceRectangle.Width = 64;
-            sourceRectangle.Height = 64;
+         
             //end of movement
             #endregion
 
             #region AttackMovement
             if (pressedKeys.IsKeyDown(Keys.Space))
             {
+                sourceRectangle.Width = 192;
+                sourceRectangle.Height = 192;
+                walkAnimationWidth = 8;
+
                 if (lastDirection == walkUp)
                 {
                     sourceRectangle.Y = 1344;   // tjockleck 192
-                    sourceRectangle.Width = 192;
-                    sourceRectangle.Height = 192;
-
+                    
                 }
 
                 if (lastDirection == walkDown)
                 {
                     sourceRectangle.Y = 1728;
-                    sourceRectangle.Width = 192;
-                    sourceRectangle.Height = 192;
+                  
                 }
 
                 if (lastDirection == walkLeft)
                 {
                     sourceRectangle.Y = 1536;
-                    sourceRectangle.Width = 192;
-                    sourceRectangle.Height = 192;
+                    
                 }
 
                 if (lastDirection == walkRight)
                 {
                     sourceRectangle.Y = 1920;
-                    sourceRectangle.Width = 192;
-                    sourceRectangle.Height = 192;
+                 
 
                 }
                
@@ -256,7 +260,7 @@ namespace GameWithJonthe
             {
                 spriteSheet = playerTexture["playerTexture"];
             }
-            if (pressedKeys.IsKeyDown(Keys.Q))
+            if (pressedKeys.IsKeyDown(Keys.D2))
             {
                 spriteSheet = playerTexture["playerWithSwordTexture"];
             }
