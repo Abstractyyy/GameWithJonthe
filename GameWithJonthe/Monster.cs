@@ -38,11 +38,22 @@ namespace GameWithJonthe
         //To reset the animation
         const int ElapsedZero = 0;
         #endregion
-
-
+        #region
+        public Rectangle Hitbox
+        {
+            get
+            {
+                hitbox.X = (int)position.X;
+                hitbox.Y = (int)position.Y;
+                hitbox.Width = sourceRectangle.Width;
+                hitbox.Height = sourceRectangle.Height;
+                return hitbox;
+            }
+        }
+        #endregion
         public Monster(Texture2D monsterTexture)
         {
-            hitbox = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
+            hitbox = new Rectangle();
             spriteSheet = monsterTexture;
             position = new Vector2(200, 200);
             velocity = new Vector2(0, 0);
@@ -135,61 +146,61 @@ namespace GameWithJonthe
             #endregion
 
             #region ShootingAnimation
-            if (PlayerPosition.X <- Math.Abs(position.X)) 
-            {
-                if (Elapsed2 > 200)
-                {
-                    Elapsed2 = 0;
-                    sourceRectangle.X += WaH;
-                    if (sourceRectangle.X > 832-64)
-                    {
-                        sourceRectangle.X = 0;
-                    }
-                }
-                sourceRectangle.Y = ShootRight;
-            }
-            if(test == 300)
-                {
+            //if (PlayerPosition.X <- Math.Abs(position.X)) 
+            //{
+            //    if (Elapsed2 > 200)
+            //    {
+            //        Elapsed2 = 0;
+            //        sourceRectangle.X += WaH;
+            //        if (sourceRectangle.X > 832-64)
+            //        {
+            //            sourceRectangle.X = 0;
+            //        }
+            //    }
+            //    sourceRectangle.Y = ShootRight;
+            //}
+            //if(test == 300)
+            //    {
                
-                if (Elapsed > 200)
-                {
-                    Elapsed = 0;
-                    sourceRectangle.X += WaH;
-                    if (sourceRectangle.X > 832 - 64)
-                    {
-                        sourceRectangle.X = 0;
-                    }
-                }
-                sourceRectangle.Y = ShootLeft;
-            }
-            if (test == 200)
-                {
+            //    if (Elapsed > 200)
+            //    {
+            //        Elapsed = 0;
+            //        sourceRectangle.X += WaH;
+            //        if (sourceRectangle.X > 832 - 64)
+            //        {
+            //            sourceRectangle.X = 0;
+            //        }
+            //    }
+            //    sourceRectangle.Y = ShootLeft;
+            //}
+            //if (test == 200)
+            //    {
                 
-                if (Elapsed > 200)
-                {
-                    Elapsed = 0;
-                    sourceRectangle.X += WaH;
-                    if (sourceRectangle.X > 832 - 64)
-                    {
-                        sourceRectangle.X = 0;
-                    }
-                }
-                sourceRectangle.Y = ShootUp;
-                }
-            if (test == 100)
-            {
+            //    if (Elapsed > 200)
+            //    {
+            //        Elapsed = 0;
+            //        sourceRectangle.X += WaH;
+            //        if (sourceRectangle.X > 832 - 64)
+            //        {
+            //            sourceRectangle.X = 0;
+            //        }
+            //    }
+            //    sourceRectangle.Y = ShootUp;
+            //    }
+            //if (test == 100)
+            //{
                 
-                if (Elapsed > 200)
-                {
-                    Elapsed = 0;
-                    sourceRectangle.X += WaH;
-                    if (sourceRectangle.X > 832-64)
-                    {
-                        sourceRectangle.X = 0;
-                    }
-                }
-                sourceRectangle.Y = ShootDown;
-            }
+            //    if (Elapsed > 200)
+            //    {
+            //        Elapsed = 0;
+            //        sourceRectangle.X += WaH;
+            //        if (sourceRectangle.X > 832-64)
+            //        {
+            //            sourceRectangle.X = 0;
+            //        }
+            //    }
+            //    sourceRectangle.Y = ShootDown;
+            //}
             
             
                 

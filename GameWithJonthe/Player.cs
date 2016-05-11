@@ -14,9 +14,11 @@ namespace GameWithJonthe
         Player player;
         
 
-        Vector2 position;
+        public Vector2 position;
         Vector2 velocity;
         Vector2 agilityAccel;
+
+        Rectangle MonsterHitbox;
 
         string thisType;
         string type;
@@ -30,7 +32,7 @@ namespace GameWithJonthe
 
         Texture2D spriteSheet;
 
-        int HP = 50000;
+        public int HP = 10;
         float Agility;
         int Mana;
               
@@ -222,7 +224,7 @@ namespace GameWithJonthe
             spriteBatch.Draw(spriteSheet, position, sourceRectangle, Color.White); //draws the player sprite whith white background
         }  // Gå animeringen hos spelaren
 
-    public Vector2 update(KeyboardState pressedKeys)
+    public Vector2 update(KeyboardState pressedKeys, Rectangle monsterHitbox)
     {
             velocity.Y = 2;
             velocity.X = 2;
@@ -269,14 +271,36 @@ namespace GameWithJonthe
                 spriteSheet = playerTexture["playerWithSpearTexture"];
             }
 
+            MonsterHitbox = monsterHitbox;
+
+            if (HP > 0)
+            {
+                if (Hitbox.Intersects(MonsterHitbox))
+                {
+                    HP -= 10;
+                }
+            }
+            
+            else if(HP <= 0)
+            {
+                sourceRectangle.Y = 64 * 20;
+                if (elapsed > 100)
+                {
+                    elapsed = 0;
+                    sourceRectangle.X += 64;
+                    if (sourceRectangle.X > 64*5)
+                    {
+                        sourceRectangle.X = 64 * 5;
+                        elapsed = 0;
+                    }
+                }
+                //position.X = 0;
+            }
+            
+
 
             return position;
     }
-    
-    
-    
-    
-
        
 }
     
