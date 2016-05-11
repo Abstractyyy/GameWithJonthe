@@ -19,6 +19,8 @@ namespace GameWithJonthe
         public Vector2 position, velocity, PlayerPosition;
 
         int test = 400;
+
+        Random rng = new Random();
         
         int HPmonster = 200;
 
@@ -60,7 +62,7 @@ namespace GameWithJonthe
 
             spriteSheet = monsterTexture;
 
-            position = new Vector2(200, 200);
+            position = new Vector2(rng.Next(0,450),rng.Next(0,450));
 
             velocity = new Vector2(0, 0);
 

@@ -61,6 +61,10 @@ namespace GameWithJonthe
         int Down = 4;
         int ShootDirection;
 
+        int kills;
+
+        int SpawnTime = 3000;
+
         int playerHP;
 
         int playersIndex = 0;
@@ -138,11 +142,13 @@ namespace GameWithJonthe
             
             playerHitbox = player.Hitbox;
 
-               if (elapsed2 >= 3000)
+               if (elapsed2 >= SpawnTime)
                {
                         monsters.Add(new Monster(monsterTexture));
                         elapsed2 = 0;
                }
+
+               
             
 
             foreach (Monster monsters in monsters)
@@ -167,48 +173,33 @@ namespace GameWithJonthe
             }
 
             
-    /*        for (int i = 0; i<projektiler.Count; i++) //Tar bort pilen och monstret som den koliderar med
+            for (int i = 0; i<projektiler.Count; i++) //Tar bort pilen och monstret som den koliderar med
 
             {
                 for (int j = 0; j< monsters.Count; j++)
                 {
                     if (projektiler[i].Hitbox.Intersects(monsters[j].Hitbox))
                     {
+                        kills++;
                         projektiler.RemoveAt(i);
                         monsters.RemoveAt(j);
                     }
                 }
-             }
-             */
 
 
 
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-          
+            if (kills > 10)
+            {
+                if (SpawnTime > 500)
+                {
+                    SpawnTime -= 500;
+                    kills = 0;
+                }      
+            }
             
             
-
-
-
-
-
-
-
-
-
-
-
             for(int i = 0; i<projektiler.Count; i++)
             {
                 if (projektiler[i].position.X > 480 || projektiler[i].position.X < 0 || projektiler[i].position.Y < 0 || projektiler[i].position.Y > 480)

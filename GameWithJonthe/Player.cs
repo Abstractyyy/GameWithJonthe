@@ -260,6 +260,20 @@ namespace GameWithJonthe
         velocity.Y = 0;
             #endregion
 
+            #region boundaries
+
+            if (position.X >= 480)
+                position.X = 479;
+            if (position.X + 20 <= 0)
+                position.X = 1;
+            if (position.Y >= 480)
+                position.Y = 479;
+            if (position.Y <= 0)
+                position.Y = 1;
+
+
+
+            #endregion
 
             if (pressedKeys.IsKeyDown(Keys.D1))
             {
