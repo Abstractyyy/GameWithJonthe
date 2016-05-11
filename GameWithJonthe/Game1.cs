@@ -37,23 +37,22 @@ namespace GameWithJonthe
 
         double elapsed;
         double elapsed2;
+
         Texture2D arrowTexture;
 
         Rectangle playerHitbox, monsterHitbox;
 
         List<Projektil> projektiler;
         
-
-
         Player player;
         PlayerWithSword playerWithSword;
         PlayerWithWand playerWithWand;
 
         List<Monster> monsters;
-
+        
+        //En bool för easter egg
         bool EE = false;
 
-        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -134,14 +133,13 @@ namespace GameWithJonthe
             //  playerPostition = playerWithSword.update(pressedKeys);
             playerHitbox = player.Hitbox;
 
-            if (pressedKeys.IsKeyDown(Keys.M))
-            {
-                if (elapsed2 >= 500)
+            
+                if (elapsed2 >= 3000)
                 {
                     monsters.Add(new Monster(monsterTexture));
                     elapsed2 = 0;
                 }
-            }
+            
 
             foreach (Monster monsters in monsters)
             {

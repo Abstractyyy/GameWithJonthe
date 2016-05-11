@@ -23,6 +23,8 @@ namespace GameWithJonthe
         string thisType;
         string type;
 
+        double elapsed2;
+
 
         public Rectangle sourceRectangle, hitbox;
 
@@ -32,7 +34,7 @@ namespace GameWithJonthe
 
         Texture2D spriteSheet;
 
-        public int HP = 10;
+        public int HP = 100;
         float Agility;
         int Mana;
               
@@ -85,13 +87,14 @@ namespace GameWithJonthe
 
             elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
 
+            elapsed2 += gameTime.ElapsedGameTime.TotalMilliseconds;
 
 
-            
 
-          
+
+
             #region Movement animation
-            
+
             if (pressedKeys.IsKeyDown(Keys.W))  //up
             {
                 sourceRectangle.Y = walkUp;
@@ -273,7 +276,11 @@ namespace GameWithJonthe
             {
                 if (Hitbox.Intersects(MonsterHitbox))
                 {
-                    HP -= 10;
+                    if(elapsed2 > 1000)
+                    {
+                        elapsed2 = 0;
+                        HP -= 10;
+                    }
                 }
             }
             
