@@ -61,16 +61,14 @@ namespace GameWithJonthe
         int Down = 4;
         int ShootDirection;
 
-        int kills;
-
-        int SpawnTime = 3000;
-
         int playerHP;
 
         int playersIndex = 0;
 
         double elapsed;
         double elapsed2;
+
+        bool removeArrow;
 
         //En bool för easter egg
         bool EE = false;
@@ -142,13 +140,11 @@ namespace GameWithJonthe
             
             playerHitbox = player.Hitbox;
 
-               if (elapsed2 >= SpawnTime)
+               if (elapsed2 >= 3000)
                {
                         monsters.Add(new Monster(monsterTexture));
                         elapsed2 = 0;
                }
-
-               
             
 
             foreach (Monster monsters in monsters)
@@ -173,33 +169,59 @@ namespace GameWithJonthe
             }
 
             
-            for (int i = 0; i<projektiler.Count; i++) //Tar bort pilen och monstret som den koliderar med
+          
 
+
+          
+           for(int pil = 0; pil< projektiler.Count; pil++)
             {
-                for (int j = 0; j< monsters.Count; j++)
+               
+
+                for (int monster = 0; monster < monsters.Count; monster++)
                 {
-                    if (projektiler[i].Hitbox.Intersects(monsters[j].Hitbox))
+                    if (projektiler[pil].Hitbox.Intersects(monsters[monster].Hitbox))
                     {
-                        kills++;
-                        projektiler.RemoveAt(i);
-                        monsters.RemoveAt(j);
+                        removeArrow = true;   
+                        monsters.RemoveAt(monster);
                     }
+                  
                 }
-
-
-
-            }
-
-            if (kills > 10)
-            {
-                if (SpawnTime > 500)
+                if (removeArrow == true)
                 {
-                    SpawnTime -= 500;
-                    kills = 0;
-                }      
+                    removeArrow = false;
+                    projektiler.RemoveAt(pil);
+                }
             }
+             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
             
             
+
+
+
+
+
+
+
+
+
+
+
             for(int i = 0; i<projektiler.Count; i++)
             {
                 if (projektiler[i].position.X > 480 || projektiler[i].position.X < 0 || projektiler[i].position.Y < 0 || projektiler[i].position.Y > 480)
