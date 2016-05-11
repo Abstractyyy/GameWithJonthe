@@ -14,9 +14,13 @@ namespace GameWithJonthe
         public Vector2 position, velocity;
         int WaH = 30;
 
+        int test = 1;
+
+        int shootDirection;
+
         public Rectangle projektil, sourceRectangle, PlayerHitbox;
 
-        public Rectangle TheArrow
+        public Rectangle Hitbox
         {
             get
             {
@@ -28,23 +32,19 @@ namespace GameWithJonthe
             }
         }
 
-        public Projektil(Texture2D arrowTexture, Vector2 position)
+        public Projektil(Texture2D arrowTexture, Vector2 position, int ShootDirection)
         {
             this.position = new Vector2(position.X, position.Y);
             velocity = new Vector2(0, 2);
             projektil = new Rectangle();
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
             spriteSheet = arrowTexture;
+            shootDirection = ShootDirection;
         }
 
         public void update(Rectangle playerHitbox)
         {
             PlayerHitbox = playerHitbox;
-
-            if (TheArrow.Intersects(PlayerHitbox))
-            {
-                
-            }
 
             position += velocity;
         }
@@ -53,27 +53,27 @@ namespace GameWithJonthe
         {
             KeyboardState pressedKeys = Keyboard.GetState();
 
-            if (pressedKeys.IsKeyDown(Keys.Right))
+            if (shootDirection == 2)
             {
                 velocity.Y = 0;
-                velocity.X = 1;
+                velocity.X = 3;
                 sourceRectangle.X = 60;
             }
-            if (pressedKeys.IsKeyDown(Keys.Left))
+            if (shootDirection == 1)
             {
                 velocity.Y = -0;
-                velocity.X = -1;
+                velocity.X = -3;
                 sourceRectangle.X = 30;
             }
-            if (pressedKeys.IsKeyDown(Keys.Up))
+            if (shootDirection == 3)
             {
-                velocity.Y = -1;
+                velocity.Y = -3;
                 velocity.X = 0;
                 sourceRectangle.X = 0;
             }
-            if (pressedKeys.IsKeyDown(Keys.Down))
+            if (shootDirection == 4)
             {
-                velocity.Y = 1;
+                velocity.Y = 3;
                 velocity.X = 0;
                 sourceRectangle.X = 90;
             }

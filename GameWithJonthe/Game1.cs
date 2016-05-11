@@ -17,6 +17,7 @@ namespace GameWithJonthe
 
         Texture2D monsterTexture;
         Texture2D Ee;
+        Texture2D youDead;
 
         Texture2D playerTexture;
         Texture2D playerWithSwordTexture;
@@ -27,9 +28,18 @@ namespace GameWithJonthe
         Dictionary<string,Texture2D> playerTextures = new Dictionary<string, Texture2D>();
         int playersIndex = 0;
 
+        //Dessa Int är för att projektilerna ska veta åt vilket håll de ska skjutas
+        int Left = 1;
+        int Right = 2;
+        int Up = 3;
+        int Down = 4;
+        int ShootDirection;
+
+        double elapsed;
+        double elapsed2;
         Texture2D arrowTexture;
 
-        Rectangle playerHitbox;
+        Rectangle playerHitbox, monsterHitbox;
 
         List<Projektil> projektiler;
         
@@ -39,7 +49,7 @@ namespace GameWithJonthe
         PlayerWithSword playerWithSword;
         PlayerWithWand playerWithWand;
 
-        Monster monster;
+        List<Monster> monsters;
 
         bool EE = false;
 
@@ -48,6 +58,8 @@ namespace GameWithJonthe
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferHeight = 500;
+            graphics.PreferredBackBufferWidth = 500;
         }
 
         
@@ -60,23 +72,24 @@ namespace GameWithJonthe
         
         protected override void LoadContent()
         {
-               
-            monsterTexture = Content.Load<Texture2D>("Skelly");
+            KeyboardState pressedKeys = Keyboard.GetState();
+         
 
-        playerTextures["playerTexture"]             = Content.Load<Texture2D>("playerWithSword");                          
-        playerTextures["playerWithSwordTexture"]    = Content.Load<Texture2D>("playerWithSpear");                          
-        playerTextures["playerWithSpearTexture"]    = Content.Load<Texture2D>("playerWithWand");                           
-        playerTextures["playerWithWandTexture"]     = Content.Load<Texture2D>("playerWithWand");                                
-        playerTextures["playerWithTreuddTexture"]   = Content.Load<Texture2D>("playerTreudd");                             
+
+            playerTextures["playerTexture"]             = Content.Load<Texture2D>("playerWithSword");                          
+            playerTextures["playerWithSwordTexture"]    = Content.Load<Texture2D>("playerWithSpear");                          
+            playerTextures["playerWithSpearTexture"]    = Content.Load<Texture2D>("playerWithWand");                           
+            playerTextures["playerWithWandTexture"]     = Content.Load<Texture2D>("playerWithWand");                                
+            playerTextures["playerWithTreuddTexture"]   = Content.Load<Texture2D>("playerTreudd");                             
                 
             arrowTexture = Content.Load<Texture2D>("Arrow");
 
-           
+            monsterTexture = Content.Load<Texture2D>("Skelly");
 
+            youDead = Content.Load<Texture2D>("YouDead");
 
-
-
-            monster = new Monster(monsterTexture);
+            monsters = new List<Monster>();
+            
             player  = new Player(playerTextures);
 
 
@@ -94,7 +107,6 @@ namespace GameWithJonthe
             */
 
             Ee = Content.Load<Texture2D>("EE");
-
 
             projektiler = new List<Projektil>();
 
@@ -114,14 +126,33 @@ namespace GameWithJonthe
         {
 
             KeyboardState pressedKeys = Keyboard.GetState();
+            elapsed2 += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            Vector2 playerPostition = player.update(pressedKeys);
+
+
+            Vector2 playerPostition = player.update(pressedKeys, monsterHitbox);
             //  playerPostition = playerWithSword.update(pressedKeys);
- 
-            monster.update(playerPostition);
-
             playerHitbox = player.Hitbox;
 
+            if (pressedKeys.IsKeyDown(Keys.M))
+            {
+                if (elapsed2 >= 500)
+                {
+                    monsters.Add(new Monster(monsterTexture));
+                    elapsed2 = 0;
+                }
+            }
+
+            foreach (Monster monsters in monsters)
+            {
+                monsters.update(playerPostition);
+            }
+
+            foreach(Monster monsters in monsters)
+            {
+                monsterHitbox = monsters.Hitbox;
+            }
+            
             if (pressedKeys.IsKeyDown(Keys.E))
                 EE = true;
             else
@@ -133,15 +164,82 @@ namespace GameWithJonthe
                 projektil.update(playerHitbox);
             }
 
-            if (pressedKeys.IsKeyDown(Keys.L))
+
+            for (int i = 0; i<projektiler.Count; i++)
             {
-                projektiler.Add(new Projektil(arrowTexture, monster.position));
+                for(int j = 0; j< monsters.Count; j++)
+                {
+                    if (projektiler[i].Hitbox.Intersects(monsters[j].Hitbox))
+                    {
+                        projektiler.RemoveAt(i);
+                        monsters.RemoveAt(j);
+                    }
+                }
             }
+            
+            for(int i = 0; i<projektiler.Count; i++)
+            {
+                if (projektiler[i].position.X > 480 || projektiler[i].position.X < 0 || projektiler[i].position.Y < 0 || projektiler[i].position.Y > 480)
+                {
+                    projektiler.RemoveAt(i);  
+                }
+            }
+            
+            #region Shoot arrow
+            if (pressedKeys.IsKeyDown(Keys.Left))
+            {
+                ShootDirection = Left;
+                elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsed >= 500)
+                {
+                    projektiler.Add(new Projektil(arrowTexture, player.position, ShootDirection));
+                    elapsed = 0;
+                }
+            }
+            if (pressedKeys.IsKeyDown(Keys.Right))
+            {
+                ShootDirection = Right;
+                elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsed >= 500)
+                {
+                    projektiler.Add(new Projektil(arrowTexture, player.position, ShootDirection));
+                    elapsed = 0;
+                }
+            }
+            if (pressedKeys.IsKeyDown(Keys.Up))
+            {
+                ShootDirection = Up;
+                elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (elapsed >= 500)
+                {
+                    projektiler.Add(new Projektil(arrowTexture, player.position, ShootDirection));
+                    elapsed = 0;
+                }
+            }
+
+            
+            
+                ShootDirection = Down;
+                
+                if (pressedKeys.IsKeyDown(Keys.Down))
+                {
+                    elapsed += gameTime.ElapsedGameTime.TotalMilliseconds;
+                    ShootDirection = Down;
+                    if(elapsed >= 500)
+                    {
+                        projektiler.Add(new Projektil(arrowTexture, player.position, ShootDirection));
+                        elapsed = 0;
+                    }
+                    
+                }
+            
+
+            #endregion
 
             base.Update(gameTime);
         }
 
-        
+
         protected override void Draw(GameTime gameTime)
         {
             KeyboardState pressedKeys = Keyboard.GetState();
@@ -149,33 +247,34 @@ namespace GameWithJonthe
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            
-            monster.draw(gameTime, spriteBatch);
+
             player.draw(gameTime, spriteBatch);
 
+            foreach (Monster monsters in monsters)
+            {
+                monsters.draw(gameTime, spriteBatch);
+            }
+            
             //Ritar ut texturen för varje pil
             foreach (Projektil item in projektiler)
             {
                 item.draw(gameTime, spriteBatch);
             }
 
+            #region easter egg
             if (EE == true)
             {
                 spriteBatch.Draw(Ee, Vector2.Zero, Color.White);
             }
+            if (player.HP <= 0)
+            {
+                spriteBatch.Draw(youDead, Vector2.Zero, Color.White);
+            }
+            #endregion
 
             spriteBatch.End();
             base.Draw(gameTime);
-        }
-
-
-        
-        
-        
-            
-
-
-            
+        }    
         
     }
 }
