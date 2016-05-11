@@ -11,22 +11,48 @@ namespace GameWithJonthe
     
     public class Game1 : Game
     {
+        #region Bunch of things
         GraphicsDeviceManager graphics;
 
         SpriteBatch spriteBatch;
 
         Texture2D monsterTexture;
+
         Texture2D Ee;
+
         Texture2D youDead;
 
+        Texture2D background;
+
         Texture2D playerTexture;
+
         Texture2D playerWithSwordTexture;
+
         Texture2D playerWithWandTexture;
+
         Texture2D playerWithSpearTexture;
+
         Texture2D playerWithTreuddTexture;
 
+        SpriteFont HP;
+
+        Texture2D arrowTexture;
+
+        Rectangle playerHitbox, monsterHitbox;
+
+        List<Projektil> projektiler;
+
+        Player player;
+
+        PlayerWithSword playerWithSword;
+
+        PlayerWithWand playerWithWand;
+
+        List<Monster> monsters;
+
+        string SplayerHP;
+
         Dictionary<string,Texture2D> playerTextures = new Dictionary<string, Texture2D>();
-        int playersIndex = 0;
 
         //Dessa Int är för att projektilerna ska veta åt vilket håll de ska skjutas
         int Left = 1;
@@ -35,24 +61,16 @@ namespace GameWithJonthe
         int Down = 4;
         int ShootDirection;
 
+        int playerHP;
+
+        int playersIndex = 0;
+
         double elapsed;
         double elapsed2;
 
-        Texture2D arrowTexture;
-
-        Rectangle playerHitbox, monsterHitbox;
-
-        List<Projektil> projektiler;
-        
-        Player player;
-        PlayerWithSword playerWithSword;
-        PlayerWithWand playerWithWand;
-
-        List<Monster> monsters;
-        
         //En bool för easter egg
         bool EE = false;
-
+        #endregion
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -60,58 +78,46 @@ namespace GameWithJonthe
             graphics.PreferredBackBufferHeight = 500;
             graphics.PreferredBackBufferWidth = 500;
         }
-
-        
+       
         protected override void Initialize()
         {
 
             base.Initialize();
         }
 
-        
         protected override void LoadContent()
         {
             KeyboardState pressedKeys = Keyboard.GetState();
          
+            playerTextures["playerTexture"]             = Content.Load<Texture2D>("playerWithSword");
 
+            playerTextures["playerWithSwordTexture"]    = Content.Load<Texture2D>("playerWithSpear");
 
-            playerTextures["playerTexture"]             = Content.Load<Texture2D>("playerWithSword");                          
-            playerTextures["playerWithSwordTexture"]    = Content.Load<Texture2D>("playerWithSpear");                          
-            playerTextures["playerWithSpearTexture"]    = Content.Load<Texture2D>("playerWithWand");                           
-            playerTextures["playerWithWandTexture"]     = Content.Load<Texture2D>("playerWithWand");                                
-            playerTextures["playerWithTreuddTexture"]   = Content.Load<Texture2D>("playerTreudd");                             
-                
+            playerTextures["playerWithSpearTexture"]    = Content.Load<Texture2D>("playerWithWand");
+
+            playerTextures["playerWithWandTexture"]     = Content.Load<Texture2D>("playerWithWand");
+
+            playerTextures["playerWithTreuddTexture"]   = Content.Load<Texture2D>("playerTreudd");
+
+            HP = Content.Load<SpriteFont>("HP");
+
+            background = Content.Load<Texture2D>("backgroundPaper");
+
             arrowTexture = Content.Load<Texture2D>("Arrow");
 
             monsterTexture = Content.Load<Texture2D>("Skelly");
 
             youDead = Content.Load<Texture2D>("YouDead");
 
+            Ee = Content.Load<Texture2D>("EE");
+
             monsters = new List<Monster>();
             
             player  = new Player(playerTextures);
 
-
-            /*
-            List<Player> Players = new List<Player>(3);
-
-            Player player = new Player(playerTexture);
-            Players.Add(player);
-
-            Player playerSword = new Player(playerWithSwordTexture);
-            Players.Add(playerSword);
-
-            Player playerWand = new Player(playerWithWandTexture);
-            Players.Add(playerWand);
-            */
-
-            Ee = Content.Load<Texture2D>("EE");
-
             projektiler = new List<Projektil>();
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-
     }
 
         
@@ -125,20 +131,18 @@ namespace GameWithJonthe
         {
 
             KeyboardState pressedKeys = Keyboard.GetState();
+
             elapsed2 += gameTime.ElapsedGameTime.TotalMilliseconds;
 
-
-
             Vector2 playerPostition = player.update(pressedKeys, monsterHitbox);
-            //  playerPostition = playerWithSword.update(pressedKeys);
+            
             playerHitbox = player.Hitbox;
 
-            
-                if (elapsed2 >= 3000)
-                {
-                    monsters.Add(new Monster(monsterTexture));
-                    elapsed2 = 0;
-                }
+               if (elapsed2 >= 3000)
+               {
+                        monsters.Add(new Monster(monsterTexture));
+                        elapsed2 = 0;
+               }
             
 
             foreach (Monster monsters in monsters)
@@ -162,6 +166,7 @@ namespace GameWithJonthe
                 projektil.update(playerHitbox);
             }
 
+            //Tar bort pilen och monstret som den koliderar med
 
             for (int i = 0; i<projektiler.Count; i++)
             {
@@ -230,7 +235,11 @@ namespace GameWithJonthe
                     }
                     
                 }
-            
+
+
+            playerHP = player.HP;
+
+            SplayerHP = "HP: " + player.HP;
 
             #endregion
 
@@ -242,9 +251,11 @@ namespace GameWithJonthe
         {
             KeyboardState pressedKeys = Keyboard.GetState();
 
-
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
             spriteBatch.Begin();
+
+            spriteBatch.Draw(background, Vector2.Zero, Color.White);
 
             player.draw(gameTime, spriteBatch);
 
@@ -269,6 +280,10 @@ namespace GameWithJonthe
                 spriteBatch.Draw(youDead, Vector2.Zero, Color.White);
             }
             #endregion
+
+            spriteBatch.DrawString(HP, SplayerHP, Vector2.Zero, Color.White);
+
+            
 
             spriteBatch.End();
             base.Draw(gameTime);

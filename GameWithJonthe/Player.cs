@@ -67,10 +67,10 @@ namespace GameWithJonthe
         {
             get
             {
-                hitbox.X = (int)position.X;
-                hitbox.Y = (int)position.Y;
-                hitbox.Width = sourceRectangle.Width;
-                hitbox.Height = sourceRectangle.Height;
+                hitbox.X = (int)position.X + 15;
+                hitbox.Y = (int)position.Y + 10;
+                hitbox.Width = sourceRectangle.Width - 30;
+                hitbox.Height = sourceRectangle.Height - 20;
                 return hitbox;
             }
         }

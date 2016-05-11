@@ -13,14 +13,17 @@ namespace GameWithJonthe
     {
         //Properties
         private Texture2D spriteSheet;
+
         public Rectangle sourceRectangle, hitbox, wholeScreen;
+
         public Vector2 position, velocity, PlayerPosition;
 
         int test = 400;
-        //Variables
         
         int HPmonster = 200;
+
         private double Elapsed = 0;
+
         private double Elapsed2 = 0;
         
 
@@ -43,10 +46,10 @@ namespace GameWithJonthe
         {
             get
             {
-                hitbox.X = (int)position.X;
-                hitbox.Y = (int)position.Y;
-                hitbox.Width = sourceRectangle.Width;
-                hitbox.Height = sourceRectangle.Height;
+                hitbox.X        = (int)position.X + 15;
+                hitbox.Y        = (int)position.Y + 10;
+                hitbox.Width    = sourceRectangle.Width - 30;
+                hitbox.Height   = sourceRectangle.Height - 20;
                 return hitbox;
             }
         }
@@ -54,10 +57,15 @@ namespace GameWithJonthe
         public Monster(Texture2D monsterTexture)
         {
             hitbox = new Rectangle();
+
             spriteSheet = monsterTexture;
+
             position = new Vector2(200, 200);
+
             velocity = new Vector2(0, 0);
+
             wholeScreen = new Rectangle(0, 0, 500, 500);
+
             sourceRectangle = new Rectangle(sourceRectangle.X, sourceRectangle.Y, WaH, WaH);
         }
         
