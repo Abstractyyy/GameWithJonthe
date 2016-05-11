@@ -160,17 +160,17 @@ namespace GameWithJonthe
             else
                 EE = false;
 
-            //uppdaterar varje pil så att de känner av player hitbox
-            foreach (Projektil projektil in projektiler)
+            foreach (Projektil projektil in projektiler)  //uppdaterar varje pil så att de känner av player hitbox
+
             {
                 projektil.update(playerHitbox);
             }
 
-            //Tar bort pilen och monstret som den koliderar med
+            
+    /*        for (int i = 0; i<projektiler.Count; i++) //Tar bort pilen och monstret som den koliderar med
 
-            for (int i = 0; i<projektiler.Count; i++)
             {
-                for(int j = 0; j< monsters.Count; j++)
+                for (int j = 0; j< monsters.Count; j++)
                 {
                     if (projektiler[i].Hitbox.Intersects(monsters[j].Hitbox))
                     {
@@ -178,8 +178,37 @@ namespace GameWithJonthe
                         monsters.RemoveAt(j);
                     }
                 }
-            }
+             }
+             */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
             
+            
+
+
+
+
+
+
+
+
+
+
+
             for(int i = 0; i<projektiler.Count; i++)
             {
                 if (projektiler[i].position.X > 480 || projektiler[i].position.X < 0 || projektiler[i].position.Y < 0 || projektiler[i].position.Y > 480)
